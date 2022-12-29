@@ -53209,3 +53209,9 @@ thead{
   border-color: #90bc41;
   color: #90bc41;
  }
+
+ .etiquetaCrearEvento{
+  margin-top: 20px;
+  margin-bottom: -16px;
+  font-weight: bold;
+ }

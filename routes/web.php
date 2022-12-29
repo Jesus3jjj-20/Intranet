@@ -81,7 +81,9 @@ Route::controller(DistribuidoresController::class)->group(function () {
 Route::controller(EventosController::class)->group(function () {
     Route::get('/calendario', 'index')->middleware(['auth'])->name("calendario");
     Route::post('/crearEvento', 'crearEvento')->middleware(['auth'])->name("crearEvento");
+    Route::post('/crearEventoPeriodico', 'crearEventoPeriodico')->middleware(['auth'])->name("crearEventoPeriodico");
 });
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');

@@ -91,6 +91,84 @@
           },";
           
    }
+
+
+   foreach($eventosPeriodicos as $periodico){
+
+   if(!isset($periodico->mes)){
+
+      for($i=0; $i<12; $i++){
+
+        if(date('l', strtotime(date("Y-" . ($i+1) . "-" . $periodico->dia .""))) == "Sunday"){
+
+          echo"{
+            title          : '" . $periodico->nombre ."',
+            start          : new Date(y,". $i ."," . ($periodico->dia + 1) ."),
+            backgroundColor: '". $periodico->color ."',
+            borderColor    : '" . $periodico->color . "',
+            allDay         : true
+          },";
+
+        } else if(date('l', strtotime(date("Y-" . ($i+1) ."-" . $periodico->dia .""))) == "Saturday"){
+          echo"{
+            title          : '" . $periodico->nombre ."',
+            start          : new Date(y,". $i ."," . ($periodico->dia + 2) ."),
+            backgroundColor: '". $periodico->color ."',
+            borderColor    : '". $periodico->color ."',
+            allDay         : true
+          },";
+
+        }else{
+        
+
+          echo"{
+            title          : '" . $periodico->nombre ."',
+            start          : new Date(y,". $i ."," . $periodico->dia . "),
+            backgroundColor: '". $periodico->color ."',
+            borderColor    : '". $periodico->color ."',
+            allDay         : true
+          },";
+        }
+      }
+
+   }else{
+
+    if(date('l', strtotime(date("Y-" . $periodico->mes . "-" . $periodico->dia .""))) == "Sunday"){
+
+      echo"{
+        title          : '" . $periodico->nombre ."',
+        start          : new Date(y,". ($periodico->mes - 1) ."," . ($periodico->dia + 1) ."),
+        backgroundColor: '". $periodico->color ."',
+        borderColor    : '" . $periodico->color . "',
+        allDay         : true
+      },";
+
+    } else if(date('l', strtotime(date("Y-" . $periodico->mes ."-" . $periodico->dia .""))) == "Saturday"){
+      echo"{
+        title          : '" . $periodico->nombre ."',
+        start          : new Date(y,". ($periodico->mes - 1) ."," . ($periodico->dia + 2) ."),
+        backgroundColor: '". $periodico->color ."',
+        borderColor    : '". $periodico->color ."',
+        allDay         : true
+      },";
+
+    }else{
+    
+
+      echo"{
+        title          : '" . $periodico->nombre ."',
+        start          : new Date(y,". ($periodico->mes - 1) ."," . $periodico->dia . "),
+        backgroundColor: '". $periodico->color ."',
+        borderColor    : '". $periodico->color ."',
+        allDay         : true
+      },";
+    }
+
+
+   }
+
+  }
+
    echo "],";
 
   ?>
@@ -202,6 +280,7 @@
                         <option class="optionGris" value="#6c757d">Gris</option>
                       </select>
 
+                      <p class="etiquetaCrearEvento">Fecha y hora inicio</p>
                       <div class="input-group mt-3">
                       <div class="input-group-prepend">
                         <span class="input-group-text"><i class="fa fa-calendar" aria-hidden="true"></i></span>
@@ -209,6 +288,7 @@
                         <input  type="date" class="form-control" id="fechaInicio" name="fechaInicio">
                       </div>
 
+                     
                       <div class="input-group">
                       <div class="input-group-prepend">
                         <span class="input-group-text"><i class="fa fa-clock" aria-hidden="true"></i></span>
@@ -220,8 +300,8 @@
 
 
 
-
-                      <div class="input-group mt-4">
+                      <p class="etiquetaCrearEvento">Fecha y hora fin</p>
+                      <div class="input-group mt-3">
                       <div class="input-group-prepend">
                         <span class="input-group-text"><i class="fa fa-calendar" aria-hidden="true"></i></span>
                       </div>
@@ -255,6 +335,56 @@
                   </form>
                 </div>
               </div>
+
+
+
+              <div class="card">
+                <div class="card-header cabeceraCrearEvento">
+                  <h3 class="card-title">Crear evento periódico</h3>
+                </div>
+                <div class="card-body">
+                <form method="POST" action="{{route('crearEventoPeriodico')}}">
+                      @csrf
+
+                      <div class="input-group">
+                        <input id="new-event" type="text" class="form-control" name="nombreEvento" placeholder="Título evento periódico" required>
+
+                        <!-- /btn-group -->
+                      </div>
+                      <!-- /input-group -->
+
+                      <select class="form-select form-select-lg mt-3" aria-label=".form-select-lg example" id="colorEvento" name="colorEvento">
+                        <option class="optionAzul" value="#007bff" selected>Azul</option>
+                        <option class="optionAmarillo" value="#ffc107">Amarillo</option>
+                        <option class="optionVerde" value="#28a745">Verde</option>
+                        <option class="optionRojo" value="#dc3545">Rojo</option>
+                        <option class="optionGris" value="#6c757d">Gris</option>
+                      </select>
+
+                      <p class="etiquetaCrearEvento">Día / Mes</p>
+                      <div class="input-group mt-3">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fa fa-calendar" aria-hidden="true"></i></span>
+                      </div>
+                      <input type="number" value="01" id="dia" name="dia" class="form-control mr-1" min="01" max="31" />
+                      
+                      <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fa fa-calendar" aria-hidden="true"></i></span>
+                      </div>
+                      <input type="number"  id="mes" name="mes" class="form-control mr-1" min="01" max="12" />
+                    </div>
+
+                  <!-- /btn-group -->
+
+                  <div class="input-group-append">
+                      <button type="submit" class="btn btn-primary botonEstiloControlsys mt-2">Añadir</button>
+                  </div>
+
+                  </form>
+                </div>
+              </div>
+
+
             </div>
           </div>
           <!-- /.col -->

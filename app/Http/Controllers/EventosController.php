@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Evento;
+use App\Models\EventosPeriodico;
 use Illuminate\Support\Facades\Auth;
 
 class EventosController extends Controller
@@ -17,11 +18,11 @@ class EventosController extends Controller
     {
         $user = Auth::user();
         $eventos = Evento::all();
-        return view("inicio.calendario",['user'=>$user,'eventos'=>$eventos]);
+        $eventosPeriodicos = EventosPeriodico::all();
+        return view("inicio.calendario",['user'=>$user,'eventos'=>$eventos,'eventosPeriodicos'=>$eventosPeriodicos]);
     }
 
     public function crearEvento(Request $request){
-
 
         $fechaInicio = \Carbon\Carbon::parse($request->fechaInicio);
         $fechaFin = \Carbon\Carbon::parse($request->fechaFin);
@@ -29,7 +30,6 @@ class EventosController extends Controller
 
         $todoDia = ($request->diaEntero == "on") ? "true" : "false";
         
-        if(isset($request->nombreEvento)){
             $evento = new Evento;
             $evento->nombre = $request->nombreEvento;
             $evento->color = $request->colorEvento;
@@ -48,9 +48,23 @@ class EventosController extends Controller
             $evento->minutos_fin =  $request->minFin;
 
             $evento->save();
-        }
+ 
 
         return redirect()->back(); 
+    }
+
+
+    public function crearEventoPeriodico(Request $request){
+
+            $eventoPeriodico = new EventosPeriodico;
+            $eventoPeriodico->nombre = $request->nombreEvento;
+            $eventoPeriodico->color = $request->colorEvento;
+            $eventoPeriodico->dia = $request->dia;
+            $eventoPeriodico->mes = $request->mes;
+
+            $eventoPeriodico->save();
+
+            return redirect()->back(); 
     }
 
     
