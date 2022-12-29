@@ -53193,4 +53193,19 @@ thead{
 #manejoEventos{
   display: none;
 }
- 
+
+.cabeceraCrearEvento{
+  background-color: #90bc41;
+  color: white;
+}
+
+.botonEstiloControlsys{
+  background-color: #90bc41;
+  border-color: #90bc41;
+ }
+
+ .botonEstiloControlsys:hover{
+  background-color: white;
+  border-color: #90bc41;
+  color: #90bc41;
+ }

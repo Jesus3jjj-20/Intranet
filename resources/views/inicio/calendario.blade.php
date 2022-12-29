@@ -83,72 +83,27 @@
    foreach($eventos as $evento){
     echo "{
           title : '" . $evento->nombre . "',
-          start:  new Date('" . $evento->annio_inicio . ",". $evento->mes_inicio.",". $evento->dia_inicio ."'),
-          end:  new Date('". $evento->annio_fin .",". $evento->mes_fin .",". $evento->dia_fin ."'),
+          start:  new Date(" . $evento->annio_inicio . ",". $evento->mes_inicio.",". $evento->dia_inicio . ",". $evento->hora_inicio . ",". $evento->minutos_inicio ."),
+          end:  new Date(". $evento->annio_fin .",". $evento->mes_fin .",". $evento->dia_fin . ",". $evento->hora_fin . ",". $evento->minutos_fin ."),
           backgroundColor: '". $evento->color ."', 
           borderColor    : '". $evento->color ."',
-          allDay         : true
+          allDay         : ". $evento->todo_dia ."
           },";
+          
    }
    echo "],";
 
   ?>
 
-  /*  {
-    title          : 'All Day Event',
-    start          : 'new Date(y, m, 1)',
-    backgroundColor: '#f56954', //red
-    borderColor    : '#f56954', //red
-    allDay         : true
-    },
-    {
-    title          : 'Long Event',
-    start          : new Date(y, m, d - 5),
-    end            : new Date(y, m, d - 2),
-    backgroundColor: '#f39c12', //yellow
-    borderColor    : '#f39c12' //yellow
-    },
-    {
-    title          : 'Meeting',
-    start          : new Date(y, m, d, 10, 30),
-    allDay         : false,
-    backgroundColor: '#0073b7', //Blue
-    borderColor    : '#0073b7' //Blue
-    },
-    {
-    title          : 'Lunch',
-    start          : new Date(y, m, d, 12, 0),
-    end            : new Date(y, m, d, 14, 0),
-    allDay         : false,
-    backgroundColor: '#00c0ef', //Info (aqua)
-    borderColor    : '#00c0ef' //Info (aqua)
-    },
-    {
-    title          : 'Birthday Party',
-    start          : new Date(y, m, d + 1, 19, 0),
-    end            : new Date(y, m, d + 1, 22, 30),
-    allDay         : false,
-    backgroundColor: '#00a65a', //Success (green)
-    borderColor    : '#00a65a' //Success (green)
-    },
-    {
-    title          : 'Click for Google',
-    start          : new Date(y, m, 28),
-    end            : new Date(y, m, 29),
-    url            : 'https://www.google.com/',
-    backgroundColor: '#3c8dbc', //Primary (light-blue)
-    borderColor    : '#3c8dbc' //Primary (light-blue)
-    }
-    ],*/
-    editable  : true,
+    editable  : false,
     droppable : true, // this allows things to be dropped onto the calendar !!!
-    drop      : function(info) {
+   /* drop      : function(info) {
     // is the "remove after drop" checkbox checked?
     if (checkbox.checked) {
     // if so, remove the element from the "Draggable Events" list
     info.draggedEl.parentNode.removeChild(info.draggedEl);
     }
-    }
+    }*/
     });
 
     calendar.render();
@@ -225,7 +180,7 @@
               </div>
               <!-- /.card -->
               <div class="card">
-                <div class="card-header">
+                <div class="card-header cabeceraCrearEvento">
                   <h3 class="card-title">Crear evento</h3>
                 </div>
                 <div class="card-body">
@@ -247,20 +202,42 @@
                         <option class="optionGris" value="#6c757d">Gris</option>
                       </select>
 
-
                       <div class="input-group mt-3">
                       <div class="input-group-prepend">
-                        <span class="input-group-text">Inicio</span>
+                        <span class="input-group-text"><i class="fa fa-calendar" aria-hidden="true"></i></span>
                       </div>
                         <input  type="date" class="form-control" id="fechaInicio" name="fechaInicio">
                       </div>
 
-                      <div class="input-group mt-3">
+                      <div class="input-group">
                       <div class="input-group-prepend">
-                        <span class="input-group-text">Fin</span>
+                        <span class="input-group-text"><i class="fa fa-clock" aria-hidden="true"></i></span>
+                      </div>
+                      <input type="number" value="00" id="horaInicio" name="horaInicio" class="form-control mr-1" min="00" max="24" />
+                      :
+                      <input type="number" value="00" id="minInicio" name="minInicio" class="form-control ml-1" min="00" max="59" />
+                      </div>
+
+
+
+
+                      <div class="input-group mt-4">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fa fa-calendar" aria-hidden="true"></i></span>
                       </div>
                         <input  type="date" class="form-control" id="fechaFin" name="fechaFin">
                       </div>
+
+                      <div class="input-group">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fa fa-clock" aria-hidden="true"></i></span>
+                      </div>
+                      <input type="number" value="00" id="horaFin" name="horaFin" class="form-control mr-1" min="00" max="24" />
+                      :
+                      <input type="number" value="00" id="minFin" name="minFin" class="form-control ml-1" min="00" max="59" />
+                      </div>
+
+
 
                       <div class="checkbox mt-3">
                       <label for="diaEntero">
@@ -272,7 +249,7 @@
                   <!-- /btn-group -->
 
                   <div class="input-group-append">
-                      <button type="submit" class="btn btn-primary mt-2">Añadir</button>
+                      <button type="submit" class="btn btn-primary botonEstiloControlsys mt-2">Añadir</button>
                   </div>
 
                   </form>

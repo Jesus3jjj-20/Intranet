@@ -21,10 +21,14 @@ class CreateEventosTable extends Migration
             $table->integer("dia_inicio");
             $table->integer("mes_inicio");
             $table->integer("annio_inicio");
+            $table->integer("hora_inicio")->nullable();
+            $table->integer("minutos_inicio")->nullable();
             $table->date("fecha_fin");
             $table->integer("dia_fin");
             $table->integer("mes_fin");
             $table->integer("annio_fin");
+            $table->integer("hora_fin")->nullable();
+            $table->integer("minutos_fin")->nullable();
             $table->string("todo_dia");
             $table->timestamps();
         });

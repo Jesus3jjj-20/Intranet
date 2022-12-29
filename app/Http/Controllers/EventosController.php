@@ -42,6 +42,11 @@ class EventosController extends Controller
             $evento->mes_fin =  $fechaFin->month - 1;
             $evento->annio_fin =  $fechaFin->year;
             $evento->todo_dia =  $todoDia;
+            $evento->hora_inicio =  $request->horaInicio;
+            $evento->minutos_inicio =  $request->minInicio;
+            $evento->hora_fin =  $request->horaFin;
+            $evento->minutos_fin =  $request->minFin;
+
             $evento->save();
         }
 
