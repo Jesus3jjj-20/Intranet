@@ -6,6 +6,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\ClientesController;
 use App\Http\Controllers\DistribuidoresController;
 use App\Http\Controllers\ProveedoresController;
+use App\Http\Controllers\EventosController;
 
 /*
 |--------------------------------------------------------------------------
@@ -77,8 +78,9 @@ Route::controller(DistribuidoresController::class)->group(function () {
     Route::get('/excelDistribuidores', 'exportarExcel')->middleware(['auth'])->name("excelDistribuidores");
 });
 
-Route::controller(InicioController::class)->group(function () {
-    Route::get('/calendario', 'calendario')->middleware(['auth'])->name("calendario");
+Route::controller(EventosController::class)->group(function () {
+    Route::get('/calendario', 'index')->middleware(['auth'])->name("calendario");
+    Route::post('/crearEvento', 'crearEvento')->middleware(['auth'])->name("crearEvento");
 });
 
 Route::get('/dashboard', function () {

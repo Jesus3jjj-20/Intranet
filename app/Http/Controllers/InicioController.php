@@ -18,10 +18,4 @@ class InicioController extends Controller
         return view("inicio.inicio", ['user'=> $user]);
     }
 
-
-    public function calendario(){
-        $user = Auth::user();
-        return view("inicio.calendario",['user'=>$user]);
-    }
-
 }

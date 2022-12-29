@@ -20,7 +20,7 @@ class UserSeeder extends Seeder
             'email' => "jjimenez@controlsys.es",
             'avatar' => "defecto.png",
             'password' => Hash::make('Controlsys'),
-            'rol_id' => 3,
+            'rol_id' => 1,
         ]);
     }
 }

@@ -53158,3 +53158,39 @@ thead{
 .page-item .page-link{
   color: #90bc41;
 }
+
+.optionAzul{
+  background-color: #007bff;
+  color: white;
+}
+
+.optionAzul:checked{
+  background-color: #007bff;
+  color: white;
+}
+
+.optionAmarillo{
+  background-color: #ffc107;
+  color: black;
+}
+
+.optionVerde{
+  background-color: #28a745;
+  color: white;
+}
+
+.optionRojo{
+  background-color: #dc3545;
+  color: white;
+}
+
+ 
+.optionGris{
+  background-color: #6c757d;
+  color: white;
+}
+
+#manejoEventos{
+  display: none;
+}
+ 
