@@ -19,7 +19,7 @@ class EventosController extends Controller
         $user = Auth::user();
         $eventos = Evento::all();
         $eventosPeriodicos = EventosPeriodico::all();
-        return view("inicio.calendario",['user'=>$user,'eventos'=>$eventos,'eventosPeriodicos'=>$eventosPeriodicos]);
+        return view("eventos.calendario",['user'=>$user,'eventos'=>$eventos,'eventosPeriodicos'=>$eventosPeriodicos]);
     }
 
     public function crearEvento(Request $request){
@@ -67,5 +67,59 @@ class EventosController extends Controller
             return redirect()->back(); 
     }
 
-    
+    public function listadoEventos(){
+        $user = Auth::user();
+        return view('eventos.listadoEventos',['user'=>$user]);
+    }
+
+    public function eliminarEvento($idEvento){
+        Evento::where("id",$idEvento)->delete();
+        return redirect()->back();
+    }
+
+    public function eliminarEventoPeriodico($idEvento){
+        EventosPeriodico::where("id",$idEvento)->delete();
+        return redirect()->back();
+    }
+
+
+    public function editarEvento($idEvento){
+        $user = Auth::user();
+        $evento = Evento::where("id",$idEvento)->firstOrFail();
+
+        return view('eventos.editarEvento',['user'=>$user,'evento'=>$evento]);
+    }
+
+
+    public function editarEventoPeriodico($idEvento){
+
+        $user = Auth::user();
+        $eventoPeriodico = EventosPeriodico::where("id",$idEvento)->firstOrFail();
+
+        return view('eventos.editarEventoPeriodico',['user'=>$user,'evento'=>$eventoPeriodico]);
+
+    }
+
+    public function actualizarDatosEvento(Request $request){
+
+        $fechaInicio = \Carbon\Carbon::parse($request->fechaInicio);
+        $fechaFin = \Carbon\Carbon::parse($request->fechaFin);
+
+
+        Evento::where('id', $request->idOculto)
+        ->update(['nombre' => $request->nombreEvento, 'color'=>$request->colorEvento,'fecha_inicio'=>$request->fechaInicio, 'dia_inicio'=>$fechaInicio->day, 'mes_inicio'=>$fechaInicio->month - 1, 'annio_inicio'=>$fechaInicio->year, 'hora_inicio'=>intval($request->horaInicio), 'minutos_inicio'=>intval($request->minInicio), 'fecha_fin'=>$request->fechaFin, 'dia_fin'=>$fechaFin->day, 'mes_fin'=>$fechaFin->month - 1, 'annio_fin'=>$fechaFin->year, 'hora_fin'=>intval($request->horaFin), 'minutos_fin'=>intval($request->minutos_fin), 'descripcion'=>$request->descripcionEvento]);
+
+        return redirect()->back();
+    }
+
+    public function actualizarDatosEventoPeriodico(Request $request){
+
+        EventosPeriodico::where('id', $request->idOculto)
+        ->update(['nombre' => $request->nombreEvento, 'color'=>$request->colorEvento, 'dia'=>$request->dia, 'mes'=>$request->mes, 'descripcion'=>$request->descripcionEvento]);
+
+        return redirect()->back();
+
+    }
+
+
 }

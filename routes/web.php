@@ -7,6 +7,7 @@ use App\Http\Controllers\ClientesController;
 use App\Http\Controllers\DistribuidoresController;
 use App\Http\Controllers\ProveedoresController;
 use App\Http\Controllers\EventosController;
+use App\Http\Controllers\ServiciosController;
 
 /*
 |--------------------------------------------------------------------------
@@ -82,6 +83,23 @@ Route::controller(EventosController::class)->group(function () {
     Route::get('/calendario', 'index')->middleware(['auth'])->name("calendario");
     Route::post('/crearEvento', 'crearEvento')->middleware(['auth'])->name("crearEvento");
     Route::post('/crearEventoPeriodico', 'crearEventoPeriodico')->middleware(['auth'])->name("crearEventoPeriodico");
+    Route::get('/listado', 'listadoEventos')->middleware(['auth'])->name("listadoEventos");
+    Route::get('/eliminarEvento/{idEvento}', 'eliminarEvento')->middleware(['auth'])->name("eliminarEvento");
+    Route::get('/eliminarEventoPeriodico/{idEvento}', 'eliminarEventoPeriodico')->middleware(['auth'])->name("eliminarEventoPeriodico");
+    Route::get('/editarEvento/{idEvento}', 'editarEvento')->middleware(['auth'])->name("editarEvento");
+    Route::get('/editarEventoPeriodico/{idEvento}', 'editarEventoPeriodico')->middleware(['auth'])->name("editarEventoPeriodico");
+    Route::post('/actualizarEvento', 'actualizarDatosEvento')->middleware(['auth'])->name("actualizarEvento");
+    Route::post('/actualizarEventoPeriodico', 'actualizarDatosEventoPeriodico')->middleware(['auth'])->name("actualizarEventoPeriodico");
+});
+
+
+Route::controller(ServiciosController::class)->group(function () {
+    Route::get('/listadoServicios', 'index')->middleware(['auth'])->name("listadoServicios");
+    Route::get('/editarServicios/{idServicio}', 'editarServicios')->middleware(['auth'])->name("editarServicios");
+    Route::post('/actualizarDatosServicio', 'actualizarServicios')->middleware(['auth'])->name("actualizarServicios");
+    Route::get('/pantalla', 'pantalla')->middleware(['auth'])->name("pantalla");
+    Route::get('/crearServicio', 'crearServicio')->middleware(['auth'])->name("crearServicio");
+    Route::post('/insertarDatos', 'insertarDatos')->middleware(['auth'])->name("insertarDatosServicioNuevo");
 });
 
 

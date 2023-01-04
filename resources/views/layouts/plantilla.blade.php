@@ -253,14 +253,67 @@
           </li>
           @endif
 
+
           <li class="nav-item">
-            <a href="{{route('calendario')}}" class="nav-link">
-            <i class="nav-icon far fa-calendar-alt"></i>
+            <a href="#" class="nav-link">
+            <i class="nav-icon fa fa-list-alt" aria-hidden="true"></i>
               <p>
-                Calendario
+                Eventos
+                <i class="fas fa-angle-left right"></i>
               </p>
             </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{{route('calendario')}}"  class="nav-link">
+                <i class="nav-icon far fa-calendar-alt"></i>
+                  <p>
+                    Calendario
+                  </p>
+                </a>
+              </li>
+
+             
+              <li class="nav-item">
+                <a href="{{route('listadoEventos')}}" class="nav-link">
+                <i class="nav-icon fa fa-list" aria-hidden="true"></i>
+                  <p>Listado eventos</p>
+                </a>
+              </li>
+             
+            </ul>
           </li>
+
+
+         
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa fa-star"></i>
+              <p>
+                Servicios
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{{route('listadoServicios')}}"  class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Listado servicios</p>
+                </a>
+              </li>
+
+              
+              <li class="nav-item">
+                <a href="{{route('crearServicio')}}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Crear servicio</p>
+                </a>
+              </li>
+             
+            </ul>
+          </li>
+
+         
+
           
           <li class="nav-item">
             <a href="#" class="nav-link">

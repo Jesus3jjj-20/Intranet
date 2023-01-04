@@ -17,6 +17,7 @@ class CreateEventosTable extends Migration
             $table->id();
             $table->string("nombre");
             $table->string("color");
+            $table->text("descripcion")->nullable();
             $table->date("fecha_inicio");
             $table->integer("dia_inicio");
             $table->integer("mes_inicio");

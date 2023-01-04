@@ -26,10 +26,10 @@ class CreateServiciosTable extends Migration
             $table->date('fecha_alta');
             $table->date('fecha_expiracion');
             $table->date('fecha_baja')->nullable();
-            $table->text('notas');
+            $table->text('notas')->nullable();
             $table->enum('estado',['activo','baja','pausa']);
             $table->string("mail_administrativo");
-            $table->text('observaciones');
+            $table->text('observaciones')->nullable();
             $table->decimal('precio')->nullable();
             $table->enum("periodificacion_cliente",['mensual','trimestral','semestral','anual']);
             $table->enum("periodificacion_proveedor",['mensual','trimestral','semestral','anual']);

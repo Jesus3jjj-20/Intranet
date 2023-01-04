@@ -1,6 +1,6 @@
 @extends('layouts.plantilla')
 
-@section('titulo', 'Calendario')
+@section('titulo', 'Calendario - Controlsys S.L')
 @section('nombreUsuario', $user->name)
 
 @section('contenido')

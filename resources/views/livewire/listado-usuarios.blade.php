@@ -33,6 +33,7 @@
            @endforeach
                   </tfoot>
                 </table>
+                <div class="paginacion">{{ $usuarios->links() }}</div>
               </div>
               <!-- /.card-body -->
             </div>

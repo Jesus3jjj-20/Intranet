@@ -39,6 +39,7 @@
             @endforeach
                   </tfoot>
                 </table>
+                <div class="paginacion">{{ $proveedores->links() }}</div>
               </div>
               <!-- /.card-body -->
             </div>
