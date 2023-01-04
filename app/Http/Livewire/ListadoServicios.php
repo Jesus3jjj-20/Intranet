@@ -23,6 +23,8 @@ class ListadoServicios extends Component
         ->orderBy($this->ordenarCampo, $this->ordenarDireccion)
         ->paginate($this->numPaginas);
 
+        session(['listadoServicios' => $servicios]);
+
         return view('livewire.listado-servicios',["user"=>$user, "servicios"=>$servicios]);
     }
 

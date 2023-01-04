@@ -228,12 +228,13 @@
                                 <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fa fa-bars" aria-hidden="true"></i></span>
                                 </div>
-                                <select class="form-select" aria-label="Select estado" name="estado">
-                                    <option selected>Seleccione un estado</option>
-                                    <option value="activo" {{($servicio->estado == "activo") ? "selected" : ""}}>Activo</option>
-                                    <option value="baja" {{($servicio->estado == "baja") ? "selected" : ""}}>Baja</option>
-                                    <option value="pausa" {{($servicio->estado == "pausa") ? "selected" : ""}}>Pausa</option>
+
+                                <select class="form-select" aria-label="Select estado"  name="estado">
+                                    @foreach($estados as $estado)
+                                        <option value="{{$estado->id}}" {{($estado->id == $servicio->estado_id) ? 'selected' : ''}}>{{$estado->nombre}}</option>
+                                    @endforeach
                                 </select>
+
                             </div>
                             <!-- /.input group -->
                             </div>

@@ -31,7 +31,7 @@
 
                                             @if($user->rol->admin != 1)
                                             <td><a href="{{route('editarServicios',['idServicio'=>$servicio->id])}}"><i class="fas fa-edit colorIcono"></i></a></td>
-                                            <td><a href=""><i class="fas fa-trash colorIcono" aria-hidden="true"></i></a></td>
+                                            <td><a href="{{route('eliminarServicios',['idServicio'=>$servicio->id])}}"><i class="fas fa-trash colorIcono" aria-hidden="true"></i></a></td>
                                             @endif
                                         </tr>
                                         @endforeach

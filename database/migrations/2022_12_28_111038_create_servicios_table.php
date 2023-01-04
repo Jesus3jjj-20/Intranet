@@ -27,7 +27,7 @@ class CreateServiciosTable extends Migration
             $table->date('fecha_expiracion');
             $table->date('fecha_baja')->nullable();
             $table->text('notas')->nullable();
-            $table->enum('estado',['activo','baja','pausa']);
+            $table->bigInteger("estado_id");
             $table->string("mail_administrativo");
             $table->text('observaciones')->nullable();
             $table->decimal('precio')->nullable();

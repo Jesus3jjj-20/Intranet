@@ -9,6 +9,7 @@ use App\Models\Tipo;
 use App\Models\Proveedore;
 use App\Models\Distribuidore;
 use App\Models\Cliente;
+use App\Models\Estado;
 use Illuminate\Support\Facades\Auth;
 
 class ServiciosController extends Controller
@@ -44,8 +45,9 @@ class ServiciosController extends Controller
         $proveedores = Proveedore::all();
         $distribuidores = Distribuidore::all();
         $clientes = Cliente::all();
+        $estados = Estado::all();
 
-        return view('servicios.crearServicio',['user'=> $user,'planes'=>$planes,'tipos'=>$tipos, 'proveedores'=>$proveedores, 'distribuidores'=>$distribuidores, 'clientes'=>$clientes]);
+        return view('servicios.crearServicio',['user'=> $user,'estados'=>$estados, 'planes'=>$planes,'tipos'=>$tipos, 'proveedores'=>$proveedores, 'distribuidores'=>$distribuidores, 'clientes'=>$clientes]);
     }
 
 
@@ -67,7 +69,7 @@ class ServiciosController extends Controller
         $servicio->fecha_expiracion = $request->fechaExpiracion;
         $servicio->fecha_baja = $request->fechaBaja;
         $servicio->notas = $request->notas;
-        $servicio->estado = $request->estado;
+        $servicio->estado_id = $request->estado;
         $servicio->mail_administrativo = $request->emailAdministrativo;
         $servicio->observaciones = $request->observaciones;
         $servicio->precio = $request->precio;
@@ -76,7 +78,7 @@ class ServiciosController extends Controller
 
         $servicio->save();
 
-        return redirect()->view('listadoServicios');
+        return redirect()->route('listadoServicios');
     }
 
 
@@ -89,8 +91,9 @@ class ServiciosController extends Controller
         $proveedores = Proveedore::all();
         $distribuidores = Distribuidore::all();
         $clientes = Cliente::all();
+        $estados = Estado::all();
 
-        return view('servicios.editarServicios',['user'=>$user,'servicio'=>$servicio,'planes'=>$planes,'tipos'=>$tipos, 'proveedores'=>$proveedores, 'distribuidores'=>$distribuidores, 'clientes'=>$clientes]);
+        return view('servicios.editarServicios',['user'=>$user,'servicio'=>$servicio,'estados'=>$estados, 'planes'=>$planes,'tipos'=>$tipos, 'proveedores'=>$proveedores, 'distribuidores'=>$distribuidores, 'clientes'=>$clientes]);
 
     }
 
@@ -112,7 +115,7 @@ class ServiciosController extends Controller
                   'fecha_expiracion' => $request->fechaExpiracion,
                   'fecha_baja' => $request->fechaBaja,
                   'notas' => $request->notas,
-                  'estado' => $request->estado,
+                  'estado_id' => $request->estado,
                   'mail_administrativo' => $request->emailAdministrativo,
                   'observaciones' => $request->observaciones,
                   'precio' => $request->precio,
@@ -121,6 +124,21 @@ class ServiciosController extends Controller
                 ]);
 
         return redirect()->back();
+    }
+
+
+    public function eliminarServicios($idServicio){
+        Servicio::where("id",$idServicio)->delete();
+        return redirect()->back();
+    }
+
+
+    public function exportarPDF(){ 
+
+        $servicios = session('listadoServicios');
+        $pdf = \PDF::loadView('servicios.listadoServiciosPDF', compact('servicios')); 
+        return $pdf->download('servicios.pdf');
+
     }
 
 

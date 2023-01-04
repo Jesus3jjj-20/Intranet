@@ -100,6 +100,8 @@ Route::controller(ServiciosController::class)->group(function () {
     Route::get('/pantalla', 'pantalla')->middleware(['auth'])->name("pantalla");
     Route::get('/crearServicio', 'crearServicio')->middleware(['auth'])->name("crearServicio");
     Route::post('/insertarDatos', 'insertarDatos')->middleware(['auth'])->name("insertarDatosServicioNuevo");
+    Route::get('/eliminarServicios/{idServicio}', 'eliminarServicios')->middleware(['auth'])->name("eliminarServicios");
+    Route::get('/pdfServicios', 'exportarPDF')->middleware(['auth'])->name("pdfServicios");
 });
 
 

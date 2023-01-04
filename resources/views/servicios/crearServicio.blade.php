@@ -235,9 +235,9 @@
                                 </div>
                                 <select class="form-select" aria-label="Select estado" name="estado">
                                     <option selected>Seleccione un estado</option>
-                                    <option value="activo">Activo</option>
-                                    <option value="baja">Baja</option>
-                                    <option value="pausa">Pausa</option>
+                                    @foreach($estados as $estado)
+                                        <option value="{{$estado->id}}">{{$estado->nombre}}</option>
+                                    @endforeach
                                 </select>
                             </div>
                             <!-- /.input group -->
