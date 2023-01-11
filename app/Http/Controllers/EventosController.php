@@ -19,6 +19,7 @@ class EventosController extends Controller
         $user = Auth::user();
         $eventos = Evento::all();
         $eventosPeriodicos = EventosPeriodico::all();
+        
         return view("eventos.calendario",['user'=>$user,'eventos'=>$eventos,'eventosPeriodicos'=>$eventosPeriodicos]);
     }
 

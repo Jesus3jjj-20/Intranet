@@ -23,6 +23,8 @@
 </head>
 <body>
 
+<div class="contenedorPantalla">
+
 <div class="container-fluid">
 
     <div class="row filaEncabezado">
@@ -37,152 +39,14 @@
     <div class="row mb-2">
 
 
-        <div class="col-sm-12 col-md-6">
-        <div class="card">
-                <div class="card-header cabeceraCrearEvento"> 
-                      <h3 class="card-title mt-2">Renovaciones Dominios</h3>
-                </div>
-                <div class="card-body">
-                  <div class="container">
-                        <div class="row titulosTabla">
-                            <div class="col">Servicio</div>
-                            <div class="col">Cliente</div>
-                            <div class="col">Fecha</div>
-                            <div class="col">Estado</div>
-                            <div class="col">Días</div>
-                        </div>
+    <livewire:pantalla />
 
-                  </div>
-
-                  <div class="paginacion"></div>
-
-                </div>
-                
-              </div>
-        </div>
-
-        <div class="col-sm-12 col-md-6">
-            <div class="card">
-                    <div class="card-header cabeceraCrearEvento">
-                        <h3 class="card-title mt-2">Renovaciones Hostings</h3>
-                    
-                    </div>
-                    <div class="card-body">
-
-                    <div class="container">
-                    <div class="row titulosTabla">
-                            <div class="col">Servicio</div>
-                            <div class="col">Cliente</div>
-                            <div class="col">Fecha</div>
-                            <div class="col">Estado</div>
-                            <div class="col">Días</div>
-                    </div>
-
-                    <div class="row filasTabla">
-                            <div class="col">Renovación</div>
-                            <div class="col">ACESUR</div>
-                            <div class="col">06/01/2023</div>
-                            <div class="col">Activo</div>
-                            <div class="col">3 días</div>
-                    </div>
-                
-                    </div>
-
-                    <div class="paginacion"></div>
-
-                    </div>
-                
-                    </div>
-                </div>
-            </div>
-
-
-
-        <div class="row mb-2">
-
-
-            <div class="col-sm-12 col-md-6">
-            <div class="card">
-                    <div class="card-header cabeceraCrearEvento"> 
-                        <h3 class="card-title mt-2">Renovaciones Microsoft</h3>
-                    </div>
-                    <div class="card-body">
-                    <div class="container">
-
-                    <div class="row titulosTabla">
-                            <div class="col">Servicio</div>
-                            <div class="col">Cliente</div>
-                            <div class="col">Fecha</div>
-                            <div class="col">Estado</div>
-                            <div class="col">Días</div>
-                        </div>
-
-                    </div>
-
-                    <div class="paginacion"></div>
-
-                    </div>
-                    
-                </div>
-            </div>
-
-            <div class="col-sm-12 col-md-6">
-                <div class="card">
-                        <div class="card-header cabeceraCrearEvento">
-                            <h3 class="card-title mt-2">Otras renovaciones</h3>
-                        
-                        </div>
-                        <div class="card-body">
-
-                        <div class="container">
-                            
-                        <div class="row titulosTabla">
-                            <div class="col">Servicio</div>
-                            <div class="col">Cliente</div>
-                            <div class="col">Fecha</div>
-                            <div class="col">Estado</div>
-                            <div class="col">Días</div>
-                        </div>
-                        
-
-                        </div>
-
-                        <div class="paginacion"></div>
-
-                        </div>
-                    
-                        </div>
-                    </div>
-            </div>
-
-
-
-            <div class="row">
-
-
-            <div class="col-sm-12">
-            <div class="card">
-                    <div class="card-header cabeceraCrearEvento"> 
-                        <h3 class="card-title mt-2">Recordatorios</h3>
-                    </div>
-                    <div class="card-body">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-1">1: </div>
-                            <div class="col-11">Facturar</div>
-                        </div>
-                    </div>
-
-                    <div class="paginacion"></div>
-
-                    </div>
-                    
-                </div>
-            </div>
-
-            </div>
 
     </div>
+    </div>
     
+</div>
+
+
 </body>
 </html>

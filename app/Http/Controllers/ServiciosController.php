@@ -10,7 +10,12 @@ use App\Models\Proveedore;
 use App\Models\Distribuidore;
 use App\Models\Cliente;
 use App\Models\Estado;
+use App\Models\Evento;
 use Illuminate\Support\Facades\Auth;
+use PDF;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\ServicioExportacion;
+use Carbon\Carbon;
 
 class ServiciosController extends Controller
 {
@@ -33,11 +38,31 @@ class ServiciosController extends Controller
         $diaNumero = \Carbon\Carbon::now()->format('d');
         $mes = $meses[\Carbon\Carbon::now()->format('n') - 1];
         $annio = \Carbon\Carbon::now()->format('Y');
+        $hoy = \Carbon\Carbon::now()->format('Y-m-d');
 
-        return view('servicios.pantalla',['diaSemana'=> $diaSemana, 'diaNumero'=>$diaNumero, 'mes'=>$mes, 'annio'=> $annio]);
+        $serviciosDominiosHostingsSSL = Servicio::where('tipo_id',1)->orWhere('tipo_id',2)->where('fecha_expiracion', '>=', $hoy)->orderBy('fecha_expiracion','asc')->take(11)->get();
+        $serviciosMicrosft = Servicio::where('tipo_id',3)->where('fecha_expiracion', '>=', $hoy)->orderBy('fecha_expiracion','asc')->take(11)->get();
+
+        $otrosServicios = Servicio::where('tipo_id', "!=" ,1)->where('tipo_id', "!=" , 2)->where('tipo_id', "!=" ,3)->where('fecha_expiracion', '>=', $hoy)->orderBy('fecha_expiracion','asc')->take(11)->get();
+
+        $recordatorios = Evento::where('fecha_inicio', '<=', $hoy)
+                        ->where('fecha_fin', '>=', $hoy)
+                        ->get();
+
+
+        Carbon::setLocale('es');
+
+        return view('servicios.pantalla',['recordatorios'=>$recordatorios, 'otrosServicios'=> $otrosServicios, 'serviciosMicrosoft'=>$serviciosMicrosft, 'serviciosDominiosHostingsSSL' => $serviciosDominiosHostingsSSL, 'diaSemana'=> $diaSemana, 'diaNumero'=>$diaNumero, 'mes'=>$mes, 'annio'=> $annio]);
     }
 
     public function crearServicio(){
+
+
+        
+     /*   $serviciosAleatorio = Servicio::factory()->count(100)->make();
+        foreach($serviciosAleatorio as $servicio){
+            $servicio->save();
+        }*/
 
         $user = Auth::user();
         $planes = Plan::all();
@@ -141,5 +166,25 @@ class ServiciosController extends Controller
 
     }
 
+    public function exportarExcel(){
+        $servicios = session('listadoServicios');
+        return Excel::download(new ServicioExportacion($servicios), 'servicios.xlsx');
+    }
+
+
+    public function cambiarEstadoServicio($idServicio){
+        $estadoServicio = Servicio::select('realizado')->where('id',$idServicio)->get();
+        
+        if($estadoServicio){
+            Servicio::where('id', $idServicio)
+            ->update(['realizado' => false]);
+        }else{
+            Servicio::where('id', $idServicio)
+            ->update(['realizado' => true]);
+        }
+
+        return redirect()->route('listadoServicios');
+
+    }
 
 }

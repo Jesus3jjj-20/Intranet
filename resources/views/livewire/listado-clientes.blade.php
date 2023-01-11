@@ -44,6 +44,11 @@
                                     <div class="paginacion">{{ $clientes->links() }}</div>
                                     </div>
               <!-- /.card-body -->
+
+              <div class="row filaAgregar">
+                <div><a href="{{route('crearClientes')}}"><i class="fa fa-plus-circle agregar" aria-hidden="true"></i></a></div>
+              </div>
+
             </div>
             <!-- /.card -->
 

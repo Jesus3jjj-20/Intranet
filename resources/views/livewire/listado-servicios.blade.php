@@ -10,12 +10,11 @@
               <!-- /.card-header -->
               <div class="card-body">
 
-                    <table id="listadoClientes" class="table table-bordered table-striped">
+                    <table id="listadoServicios" class="table table-bordered table-striped">
                                     <thead>
                                     <tr>
                                         <th>#  &nbsp; <i class="{{$icono}} iconoOrdenar" wire:click="ordenarPorCampo('id')"></i></th>
                                         <th>Servicio &nbsp;  <i class="{{$icono}} iconoOrdenar" wire:click="ordenarPorCampo('servicio')"></i></th>
-
                                         @if($user->rol->admin != 1)
                                         <th>Editar</th>
                                         <th>Eliminar</th>
@@ -41,6 +40,13 @@
                                     <div class="paginacion">{{ $servicios->links() }}</div>
                                     </div>
               <!-- /.card-body -->
+
+
+              <div class="row filaAgregar">
+                <div><a href="{{route('crearServicio')}}"><i class="fa fa-plus-circle agregar" aria-hidden="true"></i></a></div>
+              </div>
+              
+
             </div>
             <!-- /.card -->
 

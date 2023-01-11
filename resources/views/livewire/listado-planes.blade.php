@@ -2,7 +2,7 @@
 <div class="card-header">
                 <div class="row">
                   <div class="col-9">
-                  <h3 class="card-title mt-2">Información proveedores</h3>
+                  <h3 class="card-title mt-2">Información planes</h3>
                   </div>
                   <div class="col-3">
                   <input type="text" class="form-control" name="buscar"  wire:model="buscador" placeholder="Buscar..." required>
@@ -11,11 +11,11 @@
               </div>
               <!-- /.card-header -->
               <div class="card-body">
-                <table id="listadoProveedores" class="table table-bordered table-striped">
+                <table id="listadoPlanes" class="table table-bordered table-striped">
                   <thead>
                   <tr>
-                    <th># &nbsp;<i class="{{$icono}} iconoOrdenar" wire:click="ordenarPorCampo('id')"></i></th>
-                    <th>Nombre  &nbsp;  <i class="{{$icono}} iconoOrdenar" wire:click="ordenarPorCampo('nombre')"></i></th>
+                    <th># &nbsp;<i class=" {{$icono}} iconoOrdenar" wire:click="ordenarPorCampo('id')"></i></th>
+                    <th>Nombre  &nbsp;  <i class=" {{$icono}} iconoOrdenar" wire:click="ordenarPorCampo('nombre')"></i></th>
 
                     @if($user->rol->admin != 1)
                     <th>Editar</th>
@@ -25,29 +25,30 @@
                   </tr>
                   </thead>
                   <tbody>
-            @foreach($proveedores as $proveedor)
+            @foreach($planes as $plan)
                     <tr>
-                        <td>{{$proveedor->id}}</td>
-                        <td>{{$proveedor->nombre}}</td>
+                        <td>{{$plan->id}}</td>
+                        <td>{{$plan->nombre}}</td>
 
                         @if($user->rol->admin != 1)
-                        <td><a href="{{route('editarProveedores',['idProveedor'=>$proveedor->id])}}"><i class="fas fa-edit colorIcono"></i></a></td>
-                        <td><a href="{{route('eliminarProveedores',['idProveedor'=>$proveedor->id])}}"><i class="fas fa-trash colorIcono" aria-hidden="true"></i></a></td>
+                        <td><a href="{{route('editarPlanes',['idPlan'=>$plan->id])}}"><i class="fas fa-edit colorIcono"></i></a></td>
+                        <td><a href="{{route('eliminarPlanes',['idPlan'=>$plan->id])}}"><i class="fas fa-trash colorIcono" aria-hidden="true"></i></a></td>
                         @endif
 
                       </tr>
             @endforeach
                   </tfoot>
                 </table>
-                <div class="paginacion">{{ $proveedores->links() }}</div>
+                <div class="paginacion">{{ $planes->links() }}</div>
               </div>
               <!-- /.card-body -->
 
               <div class="row filaAgregar">
-                <div><a href="{{route('crearProveedores')}}"><i class="fa fa-plus-circle agregar" aria-hidden="true"></i></a></div>
+                <div><a href="{{route('crearPlan')}}"><i class="fa fa-plus-circle agregar" aria-hidden="true"></i></a></div>
               </div>
 
             </div>
             <!-- /.card -->
 
 </div>
+

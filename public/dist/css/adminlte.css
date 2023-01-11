@@ -53043,7 +53043,7 @@ a.text-muted:hover {
   color: #90bc4d;
 }
 
-#listadoClientes{
+#listadoClientes, #listadoDistribuidores, #listadoEventos, #listadoPlanes, #listadoProveedores, #listadoServicios, #listadoUsuarios{
   text-align: center;
 }
 
@@ -53223,7 +53223,7 @@ thead{
 
 .tituloPantalla{
 padding-left: 30px;
-font-size: 40px;
+font-size: 50px;
 font-weight: bold;
 color: #90bc41;
 }
@@ -53231,7 +53231,6 @@ color: #90bc41;
 .fechaPantalla{
 text-align: right;
 padding-right: 30px;
-font-size: 20px;
 font-weight: bold;
 margin-top:18px;
 }
@@ -53259,3 +53258,90 @@ margin-top:18px;
   text-align: center;
 }
 
+.tituloRecordatorio{
+  font-weight: bold;
+  font-size: 25px;
+  border-bottom: 1px solid black;
+  margin-bottom: 10px;
+}
+
+
+.cajaRecordatorio{
+padding: 20px;
+border-radius: 20px;
+margin-bottom: 5px;
+animation-name: importancia;
+animation-duration: 2s;
+animation-iteration-count: infinite;
+}
+
+@keyframes importancia{
+  0%{
+    transform: scale(1);
+  }
+  50%{
+    transform: scale(1.02);
+  }
+  100%{
+    transform: scale(1);
+  }
+}
+
+
+.negrita{
+  font-weight: bold;
+  margin-right: 5px;
+}
+
+.verde{
+  color:green;
+}
+
+.tituloTareasPendientes{
+  font-weight: bold;
+}
+
+.tareasPendientes{
+  font-weight: bold;
+}
+
+
+.botonTareas{
+  color: white;
+  font-weight: bold;
+ }
+
+ .botonTareas:hover{
+  background-color: white;
+  border-color: #ffc107;
+  color: #ffc107;
+ }
+
+ .filaAgregar{
+  display:flex;
+    justify-content: center;
+    align-items: center;
+ }
+
+ .agregar{
+  font-size: 30px;
+  color:#90bc41;
+  margin-bottom: 15px;
+ }
+
+
+ .checkRealizado:hover{
+  cursor: pointer;
+ }
+
+ .contenedorTareasPendientes{
+  height: 310px;
+ }
+
+ .contenedorCalendario{
+  height: 310px;
+}
+
+.contenedorPantalla{
+  font-size: 16px;
+}

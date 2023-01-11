@@ -8,6 +8,7 @@ use App\Http\Controllers\DistribuidoresController;
 use App\Http\Controllers\ProveedoresController;
 use App\Http\Controllers\EventosController;
 use App\Http\Controllers\ServiciosController;
+use App\Http\Controllers\PlanesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -83,7 +84,7 @@ Route::controller(EventosController::class)->group(function () {
     Route::get('/calendario', 'index')->middleware(['auth'])->name("calendario");
     Route::post('/crearEvento', 'crearEvento')->middleware(['auth'])->name("crearEvento");
     Route::post('/crearEventoPeriodico', 'crearEventoPeriodico')->middleware(['auth'])->name("crearEventoPeriodico");
-    Route::get('/listado', 'listadoEventos')->middleware(['auth'])->name("listadoEventos");
+    Route::get('/listadoEventos', 'listadoEventos')->middleware(['auth'])->name("listadoEventos");
     Route::get('/eliminarEvento/{idEvento}', 'eliminarEvento')->middleware(['auth'])->name("eliminarEvento");
     Route::get('/eliminarEventoPeriodico/{idEvento}', 'eliminarEventoPeriodico')->middleware(['auth'])->name("eliminarEventoPeriodico");
     Route::get('/editarEvento/{idEvento}', 'editarEvento')->middleware(['auth'])->name("editarEvento");
@@ -95,6 +96,7 @@ Route::controller(EventosController::class)->group(function () {
 
 Route::controller(ServiciosController::class)->group(function () {
     Route::get('/listadoServicios', 'index')->middleware(['auth'])->name("listadoServicios");
+    Route::get('/realizacion/{idServicio}', 'cambiarEstadoServicio')->middleware(['auth'])->name("servicioRealizacion");
     Route::get('/editarServicios/{idServicio}', 'editarServicios')->middleware(['auth'])->name("editarServicios");
     Route::post('/actualizarDatosServicio', 'actualizarServicios')->middleware(['auth'])->name("actualizarServicios");
     Route::get('/pantalla', 'pantalla')->middleware(['auth'])->name("pantalla");
@@ -102,6 +104,19 @@ Route::controller(ServiciosController::class)->group(function () {
     Route::post('/insertarDatos', 'insertarDatos')->middleware(['auth'])->name("insertarDatosServicioNuevo");
     Route::get('/eliminarServicios/{idServicio}', 'eliminarServicios')->middleware(['auth'])->name("eliminarServicios");
     Route::get('/pdfServicios', 'exportarPDF')->middleware(['auth'])->name("pdfServicios");
+    Route::get('/excelServicios', 'exportarExcel')->middleware(['auth'])->name("excelServicios"); 
+});
+
+
+Route::controller(PlanesController::class)->group(function () {
+    Route::get('/listadoPlanes', 'index')->middleware(['auth'])->name("listadoPlanes");
+    Route::get('/crearPlan', 'crearPlan')->middleware(['auth'])->name("crearPlan");
+    Route::post('/insertarDatosPlanNuevo', 'insertarDatos')->middleware(['auth'])->name("insertarDatosPlanNuevo");
+    Route::get('/editarPlanes/{idPlan}', 'editarPlanes')->middleware(['auth'])->name("editarPlanes");
+    Route::post('/actualizarDatosPlan', 'actualizarPlan')->middleware(['auth'])->name("actualizarPlanes");
+    Route::get('/eliminarPlanes/{idPlan}', 'eliminarPlan')->middleware(['auth'])->name("eliminarPlanes");
+    Route::get('/pdfPlanes', 'exportarPDF')->middleware(['auth'])->name("pdfPlanes");
+    Route::get('/excelPlanes', 'exportarExcel')->middleware(['auth'])->name("excelPlanes"); 
 });
 
 

@@ -13,10 +13,11 @@
 <div class="card">
     <div class="row">
         <a href="{{route('pdfServicios')}}"><button class="botonPDF"><i class="fas fa-file-pdf"></i> &nbsp; PDF</button></a>
-        <a href="#"><button class="botonExcel"><i class="fas fa-file-pdf"></i> &nbsp; EXCEL</button></a>
+        <a href="{{route('excelServicios')}}"><button class="botonExcel"><i class="fas fa-file-pdf"></i> &nbsp; EXCEL</button></a>
     </div>
               
     <livewire:listado-servicios />
+
 
     </div>
   </div>

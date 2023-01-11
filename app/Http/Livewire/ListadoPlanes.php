@@ -3,11 +3,12 @@
 namespace App\Http\Livewire;
 
 use Livewire\Component;
-use App\Models\Distribuidore;
+use App\Models\Plan;
 use Illuminate\Support\Facades\Auth;
 
-class ListadoDistribuidores extends Component
+class ListadoPlanes extends Component
 {
+
     public $buscador;
     public $ordenarCampo = "nombre";
     public $ordenarDireccion = "asc";
@@ -17,18 +18,18 @@ class ListadoDistribuidores extends Component
     public function render()
     {
 
-        $user = Auth::user();
-        $distribuidores = Distribuidore::select('id','nombre')->where("nombre", 'like', '%' . $this->buscador . '%')
+        $planes = Plan::select('id','nombre')->where("nombre", 'like', '%' . $this->buscador . '%')
         ->orWhere("id", 'like', '%' . $this->buscador . '%')
         ->orderBy($this->ordenarCampo, $this->ordenarDireccion)
         ->paginate($this->numPaginas);
 
-        session(['listadoDistribuidores' => $distribuidores]);
+        $user = Auth::user();
 
-        return view('livewire.listado-distribuidores',["user"=>$user, "distribuidores"=>$distribuidores]);
+        session(['listadoPlanes' => $planes]);
+
+        return view('livewire.listado-planes', ["planes"=> $planes, "user"=>$user]);
     }
 
-    
     public function ordenarPorCampo ($nombreCampo){
 
         $flechaArriba = "fas fa-arrow-circle-up";
@@ -40,5 +41,5 @@ class ListadoDistribuidores extends Component
         $this->icono = $this->icono == $flechaAbajo ? $flechaArriba : $flechaAbajo;
 
     }
-    
+
 }

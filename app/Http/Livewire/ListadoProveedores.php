@@ -18,7 +18,7 @@ class ListadoProveedores extends Component
     {
 
         $user = Auth::user();
-        $proveedores = Proveedore::where("nombre", 'like', '%' . $this->buscador . '%')
+        $proveedores = Proveedore::select('id','nombre')->where("nombre", 'like', '%' . $this->buscador . '%')
         ->orWhere("id", 'like', '%' . $this->buscador . '%')
         ->orderBy($this->ordenarCampo, $this->ordenarDireccion)
         ->paginate($this->numPaginas);

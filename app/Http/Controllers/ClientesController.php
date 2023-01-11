@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Cliente;
+use App\Models\Servicio;
 use Illuminate\Support\Facades\Auth;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\ClienteExportacion;
@@ -31,6 +32,7 @@ class ClientesController extends Controller
         return view("clientes.crearClientes",['user'=> $user]);
     }
 
+    
     public function editarClienteForm($idCliente)
     {
         $user = Auth::user();
@@ -49,6 +51,7 @@ class ClientesController extends Controller
 
     public function eliminarCliente($idCliente){
         Cliente::where("id",$idCliente)->delete();
+        Servicio::where("cliente_id",$idCliente)->delete();
         return redirect()->back();
     }
 
@@ -60,6 +63,7 @@ class ClientesController extends Controller
 
             return redirect()->route('listadoClientes');
     }
+
 
     public function exportarPDF(){ 
 

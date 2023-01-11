@@ -21,7 +21,7 @@ class ListadoClientes extends Component
 
 
         $user = Auth::user();
-        $clientes = Cliente::where("nombre", 'like', '%' . $this->buscador . '%')
+        $clientes = Cliente::select('id','nombre','email')->where("nombre", 'like', '%' . $this->buscador . '%')
         ->orWhere("email", 'like', '%' . $this->buscador . '%')
         ->orWhere("id", 'like', '%' . $this->buscador . '%')
         ->orderBy($this->ordenarCampo, $this->ordenarDireccion)

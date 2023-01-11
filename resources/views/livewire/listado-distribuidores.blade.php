@@ -11,7 +11,7 @@
               </div>
               <!-- /.card-header -->
               <div class="card-body">
-                <table id="listadoClientes" class="table table-bordered table-striped">
+                <table id="listadoDistribuidores" class="table table-bordered table-striped">
                   <thead>
                   <tr>
                     <th># &nbsp;<i class="{{$icono}} iconoOrdenar" wire:click="ordenarPorCampo('id')"></i></th>
@@ -42,6 +42,11 @@
                 <div class="paginacion">{{ $distribuidores->links() }}</div>
               </div>
               <!-- /.card-body -->
+
+              <div class="row filaAgregar">
+                <div><a href="{{route('crearDistribuidores')}}"><i class="fa fa-plus-circle agregar" aria-hidden="true"></i></a></div>
+              </div>
+
             </div>
             <!-- /.card -->
 </div>

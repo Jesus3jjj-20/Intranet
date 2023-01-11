@@ -25,4 +25,13 @@ class Servicio extends Model
         return $this->belongsTo(Distribuidore::class);
     }
 
+    public function cliente(){
+        return $this->belongsTo(Cliente::class);
+    }
+
+    public function estado(){
+        return $this->belongsTo(Estado::class);
+    }
+
+
 }

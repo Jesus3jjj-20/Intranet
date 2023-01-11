@@ -18,7 +18,7 @@ class ListadoServicios extends Component
     public function render()
     {
         $user = Auth::user();
-        $servicios = Servicio::where("servicio", 'like', '%' . $this->buscador . '%')
+        $servicios = Servicio::select('id','servicio')->where("servicio", 'like', '%' . $this->buscador . '%')
         ->orWhere("id", 'like', '%' . $this->buscador . '%')
         ->orderBy($this->ordenarCampo, $this->ordenarDireccion)
         ->paginate($this->numPaginas);
