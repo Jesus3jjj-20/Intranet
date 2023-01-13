@@ -21,7 +21,8 @@
                   @foreach($eventos as $evento)
                   <div class="row mb-2">
                     <div class="col-1" style="background-color: {{$evento->color}}; width: 10px"> </div>
-                    <div class="col-9">&nbsp;{{$evento->nombre}}</div>
+                    <div class="col-5">&nbsp;{{$evento->nombre}}</div>
+                    <div class="col-4">&nbsp;{{\Carbon\Carbon::createFromDate($evento->fecha_fin)->format('d-m-Y')}}</div>
                     <div class="col-1"><a href="{{route('editarEvento', ['idEvento'=>$evento->id])}}"><i class="fas fa-edit colorIcono"></i></a></div>
                     <div class="col-1"><a href="{{route('eliminarEvento', ['idEvento'=>$evento->id])}}"><i class="fa fa-trash colorIcono" aria-hidden="true"></i></a></div>
                   </div>
@@ -54,7 +55,8 @@
                   @foreach($eventosPeriodicos as $evento)
                   <div class="row mb-2">
                     <div class="col-1" style="background-color: {{$evento->color}}; width: 10px"> </div>
-                    <div class="col-9">&nbsp;{{$evento->nombre}}</div>
+                    <div class="col-5">&nbsp;{{$evento->nombre}}</div>
+                    <div class="col-4">&nbsp;{{\Carbon\Carbon::createFromDate($evento->fecha_fin)->format('d-m-Y')}}</div>
                     <div class="col-1"><a href="{{route('editarEventoPeriodico', ['idEvento'=>$evento->id])}}"><i class="fas fa-edit colorIcono"></i></a></div>
                     <div class="col-1"><a href="{{route('eliminarEventoPeriodico', ['idEvento'=>$evento->id])}}"><i class="fa fa-trash colorIcono" aria-hidden="true"></i></a></div>
                   </div>

@@ -20,6 +20,8 @@
     <!-- Theme style -->
     <link rel="stylesheet" href="{{asset('dist/css/adminlte.min.css')}}">
     <link rel="stylesheet" href="{{asset('dist/css/adminlte.css')}}">
+
+    @livewireStyles
 </head>
 <body>
 
@@ -36,7 +38,7 @@
         </div>
     </div>
 
-    <div class="row mb-2">
+    <div class="row-fluid mb-2">
 
 
     <livewire:pantalla />
@@ -47,6 +49,6 @@
     
 </div>
 
-
+@livewireScripts
 </body>
 </html>

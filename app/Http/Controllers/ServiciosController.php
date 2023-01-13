@@ -38,28 +38,15 @@ class ServiciosController extends Controller
         $diaNumero = \Carbon\Carbon::now()->format('d');
         $mes = $meses[\Carbon\Carbon::now()->format('n') - 1];
         $annio = \Carbon\Carbon::now()->format('Y');
-        $hoy = \Carbon\Carbon::now()->format('Y-m-d');
 
-        $serviciosDominiosHostingsSSL = Servicio::where('tipo_id',1)->orWhere('tipo_id',2)->where('fecha_expiracion', '>=', $hoy)->orderBy('fecha_expiracion','asc')->take(11)->get();
-        $serviciosMicrosft = Servicio::where('tipo_id',3)->where('fecha_expiracion', '>=', $hoy)->orderBy('fecha_expiracion','asc')->take(11)->get();
-
-        $otrosServicios = Servicio::where('tipo_id', "!=" ,1)->where('tipo_id', "!=" , 2)->where('tipo_id', "!=" ,3)->where('fecha_expiracion', '>=', $hoy)->orderBy('fecha_expiracion','asc')->take(11)->get();
-
-        $recordatorios = Evento::where('fecha_inicio', '<=', $hoy)
-                        ->where('fecha_fin', '>=', $hoy)
-                        ->get();
-
-
-        Carbon::setLocale('es');
-
-        return view('servicios.pantalla',['recordatorios'=>$recordatorios, 'otrosServicios'=> $otrosServicios, 'serviciosMicrosoft'=>$serviciosMicrosft, 'serviciosDominiosHostingsSSL' => $serviciosDominiosHostingsSSL, 'diaSemana'=> $diaSemana, 'diaNumero'=>$diaNumero, 'mes'=>$mes, 'annio'=> $annio]);
+        return view('servicios.pantalla',['diaSemana'=> $diaSemana, 'diaNumero'=>$diaNumero, 'mes'=>$mes, 'annio'=> $annio]);
     }
 
     public function crearServicio(){
 
 
         
-     /*   $serviciosAleatorio = Servicio::factory()->count(100)->make();
+      /* $serviciosAleatorio = Servicio::factory()->count(100)->make();
         foreach($serviciosAleatorio as $servicio){
             $servicio->save();
         }*/

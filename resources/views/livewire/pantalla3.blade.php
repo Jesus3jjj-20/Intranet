@@ -1,10 +1,10 @@
-
-<div wire:poll.8s>
+<div wire:poll>
 
 <div class="col">
-        <div class="card">
-                <div class=" card-header cabeceraCrearEvento" style="font-weigth: bold"> 
-                      <h3 class="mt-2">Dominios, Hostings y Certificados SSL</h3>
+    
+<div class="card">
+                <div class="card-header cabeceraCrearEvento"> 
+                      <h3 class="mt-2">Otras renovaciones</h3>
                 </div>
                 <div class="card-body">
                   <div class="container">
@@ -16,10 +16,19 @@
                             <div class="col">Días</div>
                         </div>
 
-                        @foreach($serviciosDominiosHostingsSSL as $servicio)
+                        @foreach($otrosServicios as $servicio)
 
 
-                        @if(strpos(\Carbon\Carbon::createFromFormat('Y-m-d', $servicio->fecha_expiracion)->diffForHumans(\Carbon\Carbon::now()->format('Y-m-d')) , "día") == true)
+                        @if(strpos(\Carbon\Carbon::createFromFormat('Y-m-d', $servicio->fecha_expiracion)->diffForHumans(\Carbon\Carbon::now()->format('Y-m-d')) , "hora") == true)
+                        <div class="row filasTabla" style="background-color:red; color:white;">
+                            <div class="col">{{$servicio->servicio}}</div>
+                            <div class="col">{{$servicio->cliente->nombre}}</div>
+                           <!-- <div class="col">{{\Carbon\Carbon::parse(strtotime($servicio->fecha_expiracion))->formatLocalized('%d/%m/%Y') }} </div> -->
+                            <div class="col">{{$servicio->estado->nombre}}</div>
+                            <div class="col">Expira hoy</div>
+                        </div>
+
+                        @elseif(strpos(\Carbon\Carbon::createFromFormat('Y-m-d', $servicio->fecha_expiracion)->diffForHumans(\Carbon\Carbon::now()->format('Y-m-d')) , "día") == true)
                         
                         <div class="row filasTabla" style="background-color:red; color:white;">
                             <div class="col">{{$servicio->servicio}}</div>
@@ -30,6 +39,7 @@
                             
 
                         </div>
+
 
                         @else
 
@@ -53,18 +63,30 @@
                             @endif
 
                         </div>
-                        
-                        
+
+
                         @endif
 
 
                   
                         @endforeach
 
+                       
 
                   </div>
 
 
                 </div>
+                
+              </div>
         </div>
+
+
+</div>
+
+
+
+
+</div>
+
 </div>

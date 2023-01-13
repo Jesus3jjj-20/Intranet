@@ -14,7 +14,7 @@ class ServicioFactory extends Factory
         return [
             'servicio' => $this->faker->name,
             'plan_id' => 1,
-            'tipo_id' => rand(1,5),
+            'tipo_id' => rand(1,6),
             'distribuidore_id' => 1,
             'factura_distribuidor' => rand(0,1),
             'comision_distribuidor' => rand(0,1),

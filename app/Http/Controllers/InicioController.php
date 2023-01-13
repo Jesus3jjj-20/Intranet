@@ -8,6 +8,7 @@ use App\Models\Cliente;
 use App\Models\Distribuidore;
 use App\Models\Proveedore;
 use App\Models\Evento;
+use App\Models\Tipo;
 use Illuminate\Support\Facades\Auth;
 
 class InicioController extends Controller
@@ -33,8 +34,28 @@ class InicioController extends Controller
 
         $totalNotificaciones = $numeroEventosHoy + $numeroServiciosPendientes;
 
+        $tipos = Tipo::orderBy('id','asc')->get();
+
+        $serviciosPorMeses =  Servicio::selectRaw('month(fecha_alta) mes, count(*) servicios')
+                            ->groupBy('mes')
+                            ->orderBy('mes', 'asc')
+                            ->whereYear('fecha_alta',\Carbon\Carbon::now('Y'))
+                            ->get();
+
+        $serviciosPorTipos =  Servicio::selectRaw('tipo_id tipo, count(*) servicios')
+                            ->groupBy('tipo')
+                            ->orderBy('tipo', 'asc')
+                            ->whereYear('fecha_alta',\Carbon\Carbon::now('Y'))
+                            ->get();
+
+
+        $ultimosServiciosRegistrados = Servicio::orderBy('id','desc')->take(7)->get();
+        $ultimosClientesRegistrados = Cliente::orderBy('id','desc')->take(7)->get();
+        $ultimosDistribuidoresRegistrados = Distribuidore::orderBy('id','desc')->take(7)->get();
+        $ultimosProveedoresRegistrados = Proveedore::orderBy('id','desc')->take(7)->get();
+
         $user = Auth::user();
-        return view("inicio.inicio", ['user'=> $user, 'hoy'=> $hoyFormatoES, 'totalNotificaciones'=>$totalNotificaciones, 'numeroServiciosPendientes'=> $numeroServiciosPendientes, 'numeroEventosHoy'=> $numeroEventosHoy, 'numeroServicios'=>$numeroServicios, 'numeroClientes'=> $numeroClientes, 'numeroDistribuidores'=> $numeroDistribuidores, 'numeroProveedores'=> $numeroProveedores]);
+        return view("inicio.inicio", ['ultimosProveedores'=>$ultimosProveedoresRegistrados,'ultimosDistribuidores'=>$ultimosDistribuidoresRegistrados,'ultimosClientes'=> $ultimosClientesRegistrados, 'ultimosServicios'=>$ultimosServiciosRegistrados,'tipos'=>$tipos, 'serviciosPorTipos'=> $serviciosPorTipos, 'serviciosPorMeses'=> $serviciosPorMeses ,'user'=> $user, 'hoy'=> $hoyFormatoES, 'totalNotificaciones'=>$totalNotificaciones, 'numeroServiciosPendientes'=> $numeroServiciosPendientes, 'numeroEventosHoy'=> $numeroEventosHoy, 'numeroServicios'=>$numeroServicios, 'numeroClientes'=> $numeroClientes, 'numeroDistribuidores'=> $numeroDistribuidores, 'numeroProveedores'=> $numeroProveedores]);
     }
 
 }

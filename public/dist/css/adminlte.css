@@ -53232,7 +53232,8 @@ color: #90bc41;
 text-align: right;
 padding-right: 30px;
 font-weight: bold;
-margin-top:18px;
+margin-top:23px;
+font-size: 25px;
 }
 
 @media(max-width:800px){
@@ -53269,7 +53270,7 @@ margin-top:18px;
 .cajaRecordatorio{
 padding: 20px;
 border-radius: 20px;
-margin-bottom: 5px;
+margin-bottom: 10px;
 animation-name: importancia;
 animation-duration: 2s;
 animation-iteration-count: infinite;
@@ -53344,4 +53345,8 @@ animation-iteration-count: infinite;
 
 .contenedorPantalla{
   font-size: 16px;
+}
+
+#mapaOculto{
+  display: none;
 }

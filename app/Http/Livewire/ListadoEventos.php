@@ -14,7 +14,7 @@ class ListadoEventos extends Component
     public function render()
     {
             $annio = date('Y');
-            $eventos = Evento::where('annio_inicio', $annio)->where("nombre", 'like', '%' . $this->buscador1 . '%')->paginate(10);
+            $eventos = Evento::where('annio_inicio', $annio)->where("nombre", 'like', '%' . $this->buscador1 . '%')->orderBy('fecha_fin','asc')->paginate(10);
             $eventosPeriodicos = EventosPeriodico::where("nombre", 'like', '%' . $this->buscador2 . '%')->paginate(10);
             return view('livewire.listado-eventos',['annio'=>$annio,'eventos'=>$eventos,'eventosPeriodicos'=>$eventosPeriodicos]);
     }

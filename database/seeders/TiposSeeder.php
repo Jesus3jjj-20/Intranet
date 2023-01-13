@@ -37,6 +37,11 @@ class TiposSeeder extends Seeder
 
         DB::table('tipos')->insert([
             'id' => "5",
+            'nombre' => "certificado ssl",
+        ]);
+
+        DB::table('tipos')->insert([
+            'id' => "6",
             'nombre' => "otros",
         ]);
 

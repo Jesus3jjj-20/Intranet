@@ -1,22 +1,23 @@
-
-<div wire:poll.8s>
+<div wire:poll>
 
 <div class="col">
-        <div class="card">
-                <div class=" card-header cabeceraCrearEvento" style="font-weigth: bold"> 
-                      <h3 class="mt-2">Dominios, Hostings y Certificados SSL</h3>
-                </div>
-                <div class="card-body">
-                  <div class="container">
-                        <div class="row titulosTabla">
+            <div class="card">
+                    <div class="card-header cabeceraCrearEvento">
+                        <h3 class="mt-2">Microsoft</h3>
+                    
+                    </div>
+                    <div class="card-body">
+
+                    <div class="container">
+                    <div class="row titulosTabla">
                             <div class="col">Servicio</div>
                             <div class="col">Cliente</div>
-                           <!-- <div class="col">Fecha</div> -->
+                            <!--<div class="col">Fecha</div>-->
                             <div class="col">Estado</div>
                             <div class="col">Días</div>
-                        </div>
+                    </div>
 
-                        @foreach($serviciosDominiosHostingsSSL as $servicio)
+                    @foreach($serviciosMicrosoft as $servicio)
 
 
                         @if(strpos(\Carbon\Carbon::createFromFormat('Y-m-d', $servicio->fecha_expiracion)->diffForHumans(\Carbon\Carbon::now()->format('Y-m-d')) , "día") == true)
@@ -60,11 +61,13 @@
 
                   
                         @endforeach
+                
+                    </div>
 
-
-                  </div>
-
-
+                    </div>
+                
+                    </div>
                 </div>
-        </div>
+            </div>
+
 </div>
