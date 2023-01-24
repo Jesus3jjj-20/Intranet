@@ -3,11 +3,16 @@
 namespace App\Http\Livewire;
 
 use Livewire\Component;
-use App\Models\Proveedore;
+use App\Models\Proveedor;
 use Illuminate\Support\Facades\Auth;
+use Livewire\WithPagination;
+
 
 class ListadoProveedores extends Component
 {
+    use WithPagination;
+    protected $paginationTheme = 'bootstrap';
+
     public $buscador;
     public $ordenarCampo = "nombre";
     public $ordenarDireccion = "asc";
@@ -18,7 +23,7 @@ class ListadoProveedores extends Component
     {
 
         $user = Auth::user();
-        $proveedores = Proveedore::select('id','nombre')->where("nombre", 'like', '%' . $this->buscador . '%')
+        $proveedores = Proveedor::select('id','nombre')->where("nombre", 'like', '%' . $this->buscador . '%')
         ->orWhere("id", 'like', '%' . $this->buscador . '%')
         ->orderBy($this->ordenarCampo, $this->ordenarDireccion)
         ->paginate($this->numPaginas);

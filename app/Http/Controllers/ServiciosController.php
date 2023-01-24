@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Servicio;
 use App\Models\Plan;
 use App\Models\Tipo;
-use App\Models\Proveedore;
+use App\Models\Proveedor;
 use App\Models\Distribuidore;
 use App\Models\Cliente;
 use App\Models\Estado;
@@ -54,7 +54,7 @@ class ServiciosController extends Controller
         $user = Auth::user();
         $planes = Plan::all();
         $tipos = Tipo::all();
-        $proveedores = Proveedore::all();
+        $proveedores = Proveedor::all();
         $distribuidores = Distribuidore::all();
         $clientes = Cliente::all();
         $estados = Estado::all();
@@ -100,7 +100,7 @@ class ServiciosController extends Controller
         $user = Auth::user();
         $planes = Plan::all();
         $tipos = Tipo::all();
-        $proveedores = Proveedore::all();
+        $proveedores = Proveedor::all();
         $distribuidores = Distribuidore::all();
         $clientes = Cliente::all();
         $estados = Estado::all();
