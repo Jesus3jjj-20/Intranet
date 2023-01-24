@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Servicio;
 use App\Models\Cliente;
 use App\Models\Distribuidore;
-use App\Models\Proveedore;
+use App\Models\Proveedor;
 use App\Models\Evento;
 use App\Models\Tipo;
 use Illuminate\Support\Facades\Auth;
@@ -23,8 +23,8 @@ class InicioController extends Controller
 
         $numeroServicios = Servicio::all()->count();
         $numeroClientes = Cliente::all()->count();
-        $numeroDistribuidores = Distribuidore::all()->count();
-        $numeroProveedores = Proveedore::all()->count();
+        $numeroDistribuidores =Distribuidore::all()->count();
+        $numeroProveedores = Proveedor::all()->count();
         $hoy = \Carbon\Carbon::now()->format('Y-m-d');
 
         $hoyFormatoES = \Carbon\Carbon::now()->format('d-m-Y');
@@ -52,7 +52,7 @@ class InicioController extends Controller
         $ultimosServiciosRegistrados = Servicio::orderBy('id','desc')->take(7)->get();
         $ultimosClientesRegistrados = Cliente::orderBy('id','desc')->take(7)->get();
         $ultimosDistribuidoresRegistrados = Distribuidore::orderBy('id','desc')->take(7)->get();
-        $ultimosProveedoresRegistrados = Proveedore::orderBy('id','desc')->take(7)->get();
+        $ultimosProveedoresRegistrados = Proveedor::orderBy('id','desc')->take(7)->get();
 
         $user = Auth::user();
         return view("inicio.inicio", ['ultimosProveedores'=>$ultimosProveedoresRegistrados,'ultimosDistribuidores'=>$ultimosDistribuidoresRegistrados,'ultimosClientes'=> $ultimosClientesRegistrados, 'ultimosServicios'=>$ultimosServiciosRegistrados,'tipos'=>$tipos, 'serviciosPorTipos'=> $serviciosPorTipos, 'serviciosPorMeses'=> $serviciosPorMeses ,'user'=> $user, 'hoy'=> $hoyFormatoES, 'totalNotificaciones'=>$totalNotificaciones, 'numeroServiciosPendientes'=> $numeroServiciosPendientes, 'numeroEventosHoy'=> $numeroEventosHoy, 'numeroServicios'=>$numeroServicios, 'numeroClientes'=> $numeroClientes, 'numeroDistribuidores'=> $numeroDistribuidores, 'numeroProveedores'=> $numeroProveedores]);

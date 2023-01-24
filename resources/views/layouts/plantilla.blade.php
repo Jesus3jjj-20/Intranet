@@ -230,6 +230,16 @@
           </li>
           @endif
 
+          <li class="nav-item">
+            <a href="{{route('listadoRenovaciones')}}" class="nav-link">
+            <i class="nav-icon fa fa-retweet" aria-hidden="true"></i>
+              <p>
+                Renovaciones
+              </p>
+            </a>
+          </li>
+       
+
 
           <li class="nav-item">
             <a href="#" class="nav-link">

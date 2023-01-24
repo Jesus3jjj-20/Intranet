@@ -53350,3 +53350,61 @@ animation-iteration-count: infinite;
 #mapaOculto{
   display: none;
 }
+
+#listadoRenovaciones{
+  text-align: center;
+}
+
+.botonRenovaciones{
+  width: 250px;
+  background-color: #90bc41;
+  border: 1px solid #90bc41;
+  text-align: center;
+  padding: 10px;
+  border-radius: 20px;
+  color:white;
+  font-weight: bold;
+
+}
+
+.botonRenovaciones:hover{
+  cursor: pointer;
+  background-color: white;
+  border: 1px solid #90bc41;
+  color: #90bc41;
+}
+
+
+.columnaFiltroMes{
+  text-align: right;
+}
+
+.pendiente{
+  background-color: orange;
+  color: white;
+  font-weight: bold;
+}
+
+.enviado{
+  background-color: skyblue;
+  color: white;
+  font-weight: bold;
+}
+
+.enviado2{
+  background-color: grey;
+  color: white;
+  font-weight: bold;
+}
+
+.aceptado{
+  background-color: green;
+  color: white;
+  font-weight: bold;
+}
+
+.cancelado{
+  background-color: red;
+  color: white;
+  font-weight: bold;
+}

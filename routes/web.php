@@ -9,6 +9,7 @@ use App\Http\Controllers\ProveedoresController;
 use App\Http\Controllers\EventosController;
 use App\Http\Controllers\ServiciosController;
 use App\Http\Controllers\PlanesController;
+use App\Http\Controllers\RenovacionesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -118,6 +119,16 @@ Route::controller(PlanesController::class)->group(function () {
     Route::get('/pdfPlanes', 'exportarPDF')->middleware(['auth'])->name("pdfPlanes");
     Route::get('/excelPlanes', 'exportarExcel')->middleware(['auth'])->name("excelPlanes"); 
 });
+
+
+Route::controller(RenovacionesController::class)->group(function () {
+    Route::get('/listadoRenovaciones', 'index')->middleware(['auth'])->name("listadoRenovaciones");
+    Route::get('/renovaciones', 'importarRenovaciones')->middleware(['auth'])->name("importarRenovaciones");
+    Route::get('/editarRenovaciones/{idRenovacion}', 'editarRenovacion')->middleware(['auth'])->name("editarRenovacion");
+    Route::post('/actualizarRenovacion', 'actualizarRenovacion')->middleware(['auth'])->name("actualizarRenovacion");
+});
+
+
 
 
 Route::get('/dashboard', function () {

@@ -5,9 +5,13 @@ namespace App\Http\Livewire;
 use Livewire\Component;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Servicio;
+use Livewire\WithPagination;
+
 
 class ListadoServicios extends Component
 {
+    use WithPagination;
+    protected $paginationTheme = 'bootstrap';
 
     public $buscador;
     public $ordenarCampo = "servicio";

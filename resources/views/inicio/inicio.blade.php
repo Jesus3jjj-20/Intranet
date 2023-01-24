@@ -452,10 +452,10 @@
 
       <?php 
 
-      echo "'" . $tipos[0]->nombre . "'";
+      echo "'" . isset($tipo[0]) ? $tipos[0]->nombre : '' . "'";
 
         for($i=1; $i<count($tipos); $i++){
-          echo "," . "'". $tipos[$i]->nombre . "'";
+          echo "," . "'". isset($tipo[$i]) ? $tipos[0]->nombre : '' . "'";
         }
 
       ?>
@@ -472,10 +472,10 @@
               data: [
 
       <?php
-          echo $serviciosPorTipos[0]->servicios;
+          echo isset($serviciosPorTipos[0]) ? $serviciosPorTipos[0]->nombre : '';
 
           for($i=1; $i< count($serviciosPorTipos); $i++){
-              echo "," . $serviciosPorTipos[$i]->servicios;
+              echo "," . isset($serviciosPorTipos[$i]) ? $serviciosPorTipos[0]->nombre : '';
           }
 
       ?>

@@ -5,9 +5,13 @@ namespace App\Http\Livewire;
 use Livewire\Component;
 use App\Models\Plan;
 use Illuminate\Support\Facades\Auth;
+use Livewire\WithPagination;
+
 
 class ListadoPlanes extends Component
 {
+    use WithPagination;
+    protected $paginationTheme = 'bootstrap';
 
     public $buscador;
     public $ordenarCampo = "nombre";

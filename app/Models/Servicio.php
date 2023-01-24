@@ -33,5 +33,10 @@ class Servicio extends Model
         return $this->belongsTo(Estado::class);
     }
 
+    public function renovacion()
+    {
+        return $this->hasMany(Renovacion::class);
+    }
+
 
 }

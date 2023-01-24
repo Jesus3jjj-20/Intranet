@@ -5,9 +5,14 @@ namespace App\Http\Livewire;
 use Livewire\Component;
 use App\Models\Distribuidore;
 use Illuminate\Support\Facades\Auth;
+use Livewire\WithPagination;
 
 class ListadoDistribuidores extends Component
 {
+
+    use WithPagination;
+    protected $paginationTheme = 'bootstrap';
+
     public $buscador;
     public $ordenarCampo = "nombre";
     public $ordenarDireccion = "asc";

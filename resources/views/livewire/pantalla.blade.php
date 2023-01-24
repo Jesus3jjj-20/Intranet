@@ -19,7 +19,16 @@
                         @foreach($serviciosDominiosHostingsSSL as $servicio)
 
 
-                        @if(strpos(\Carbon\Carbon::createFromFormat('Y-m-d', $servicio->fecha_expiracion)->diffForHumans(\Carbon\Carbon::now()->format('Y-m-d')) , "día") == true)
+                        @if(strpos(\Carbon\Carbon::createFromFormat('Y-m-d', $servicio->fecha_expiracion)->diffForHumans(\Carbon\Carbon::now()->format('Y-m-d')) , "hora") == true)
+                        <div class="row filasTabla" style="background-color:red; color:white;">
+                            <div class="col">{{$servicio->servicio}}</div>
+                            <div class="col">{{$servicio->cliente->nombre}}</div>
+                           <!-- <div class="col">{{\Carbon\Carbon::parse(strtotime($servicio->fecha_expiracion))->formatLocalized('%d/%m/%Y') }} </div> -->
+                            <div class="col">{{$servicio->estado->nombre}}</div>
+                            <div class="col">Expira hoy</div>
+                        </div>
+
+                        @elseif(strpos(\Carbon\Carbon::createFromFormat('Y-m-d', $servicio->fecha_expiracion)->diffForHumans(\Carbon\Carbon::now()->format('Y-m-d')) , "día") == true)
                         
                         <div class="row filasTabla" style="background-color:red; color:white;">
                             <div class="col">{{$servicio->servicio}}</div>
@@ -30,6 +39,7 @@
                             
 
                         </div>
+
 
                         @else
 
@@ -53,8 +63,8 @@
                             @endif
 
                         </div>
-                        
-                        
+
+
                         @endif
 
 

@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 
 use Illuminate\Http\Request;
-use App\Models\Proveedore;
+use App\Models\Proveedor;
 use Illuminate\Support\Facades\Auth;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\ProveedorExportacion;
@@ -29,7 +29,7 @@ class ProveedoresController extends Controller
     }
 
     public function crearProveedorDatos(Request $request){
-        $proveedor = new Proveedore;
+        $proveedor = new Proveedor;
         $proveedor->nombre = $request->nombre;
         $proveedor->save();
 
@@ -38,19 +38,19 @@ class ProveedoresController extends Controller
 
     public function editarProveedorForm($idProveedor){
             $user = Auth::user();
-            $proveedor = Proveedore::find($idProveedor);
+            $proveedor = Proveedor::find($idProveedor);
             return view("proveedores.editarProveedores",["proveedor"=> $proveedor, "user"=> $user]);
     }
 
     public function editarDatosProveedor(Request $request){
-        Proveedore::where('id', $request->idOculto)
+        Proveedor::where('id', $request->idOculto)
         ->update(['nombre' => $request->nombre]);
 
         return redirect()->back();
     }
 
     public function eliminarProveedores($idProveedor){
-        Proveedore::where("id",$idProveedor)->delete();
+        Proveedor::where("id",$idProveedor)->delete();
         return redirect()->back();
     }
 

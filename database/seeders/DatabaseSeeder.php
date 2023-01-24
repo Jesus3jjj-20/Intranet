@@ -19,6 +19,7 @@ class DatabaseSeeder extends Seeder
             RolesSeeder::class,
             EstadosSeeder::class,
             TiposSeeder::class,
+            EstadosRenovacionesSeeder::class,
         ]);
     }
 }

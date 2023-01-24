@@ -5,9 +5,14 @@ namespace App\Http\Livewire;
 use Livewire\Component;
 use App\Models\Evento;
 use App\Models\EventosPeriodico;
+use Livewire\WithPagination;
 
 class ListadoEventos extends Component
 {
+
+    use WithPagination;
+    protected $paginationTheme = 'bootstrap';
+    
     public $buscador1;
     public $buscador2;
 

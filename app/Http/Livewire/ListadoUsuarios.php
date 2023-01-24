@@ -5,10 +5,15 @@ namespace App\Http\Livewire;
 use Livewire\Component;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use Livewire\WithPagination;
+
 
 class ListadoUsuarios extends Component
 {
 
+    use WithPagination;
+    protected $paginationTheme = 'bootstrap';
+    
     public $buscador;
     public $ordenarCampo = "name";
     public $ordenarDireccion = "desc";
