@@ -18,11 +18,11 @@ class Servicio extends Model
     }
 
     public function proveedor(){
-        return $this->belongsTo(Proveedore::class);
+        return $this->belongsTo(Proveedor::class);
     }
 
     public function distribuidor(){
-        return $this->belongsTo(Distribuidore::class);
+        return $this->belongsTo(Distribuidor::class);
     }
 
     public function cliente(){

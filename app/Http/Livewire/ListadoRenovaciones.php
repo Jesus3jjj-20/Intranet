@@ -36,6 +36,7 @@ class ListadoRenovaciones extends Component
             ->orderBy("fecha_renovacion", "desc")
             ->paginate($this->numPaginas);
         }
+
         
         return view('livewire.listado-renovaciones',['renovaciones'=>$renovaciones,'user'=>$user]);
     }

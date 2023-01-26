@@ -7,7 +7,7 @@ use App\Models\Servicio;
 use App\Models\Plan;
 use App\Models\Tipo;
 use App\Models\Proveedor;
-use App\Models\Distribuidore;
+use App\Models\Distribuidor;
 use App\Models\Cliente;
 use App\Models\Estado;
 use App\Models\Evento;
@@ -45,8 +45,8 @@ class ServiciosController extends Controller
     public function crearServicio(){
 
 
-        
-      /* $serviciosAleatorio = Servicio::factory()->count(100)->make();
+     /*   
+       $serviciosAleatorio = Servicio::factory()->count(100)->make();
         foreach($serviciosAleatorio as $servicio){
             $servicio->save();
         }*/
@@ -55,7 +55,7 @@ class ServiciosController extends Controller
         $planes = Plan::all();
         $tipos = Tipo::all();
         $proveedores = Proveedor::all();
-        $distribuidores = Distribuidore::all();
+        $distribuidores = Distribuidor::all();
         $clientes = Cliente::all();
         $estados = Estado::all();
 
@@ -72,10 +72,10 @@ class ServiciosController extends Controller
         $servicio->servicio = $request->nombreServicio;
         $servicio->plan_id = $request->plan;
         $servicio->tipo_id = $request->tipo;
-        $servicio->distribuidore_id = $request->distribuidor;
+        $servicio->distribuidor_id = $request->distribuidor;
         $servicio->factura_distribuidor =  $facturaDistribuidor;
         $servicio->comision_distribuidor = $comisionDistribuidor;
-        $servicio->proveedore_id = $request->proveedor;
+        $servicio->proveedor_id = $request->proveedor;
         $servicio->cliente_id = $request->cliente;
         $servicio->fecha_alta = $request->fechaAlta;
         $servicio->fecha_expiracion = $request->fechaExpiracion;
@@ -98,10 +98,10 @@ class ServiciosController extends Controller
 
         $servicio = Servicio::find($idServicio);
         $user = Auth::user();
-        $planes = Plan::all();
+        $planes = Plan::where('tipo_id', $servicio->tipo_id)->get();
         $tipos = Tipo::all();
         $proveedores = Proveedor::all();
-        $distribuidores = Distribuidore::all();
+        $distribuidores = Distribuidor::all();
         $clientes = Cliente::all();
         $estados = Estado::all();
 
@@ -118,10 +118,10 @@ class ServiciosController extends Controller
         ->update(['servicio' => $request->nombreServicio,
                   'plan_id' => $request->plan,
                   'tipo_id' => $request->tipo,
-                  'distribuidore_id' => $request->distribuidor,
+                  'distribuidor_id' => $request->distribuidor,
                   'factura_distribuidor' => $facturaDistribuidor,
                   'comision_distribuidor' => $comisionDistribuidor,
-                  'proveedore_id' => $request->proveedor,
+                  'proveedor_id' => $request->proveedor,
                   'cliente_id' => $request->cliente,
                   'fecha_alta' => $request->fechaAlta,
                   'fecha_expiracion' => $request->fechaExpiracion,
@@ -159,6 +159,7 @@ class ServiciosController extends Controller
     }
 
 
+    /*
     public function cambiarEstadoServicio($idServicio){
         $estadoServicio = Servicio::select('realizado')->where('id',$idServicio)->get();
         
@@ -173,5 +174,6 @@ class ServiciosController extends Controller
         return redirect()->route('listadoServicios');
 
     }
+    */
 
 }

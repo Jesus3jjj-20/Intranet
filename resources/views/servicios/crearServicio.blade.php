@@ -40,14 +40,14 @@
                     <div class="col-sm-12 col-md-4">
 
                     <div class="form-group">
-                    <label>* Plan:</label>
+                    <label>Plan:</label>
 
                     <div class="input-group">
                         <div class="input-group-prepend">
                         <span class="input-group-text"><i class="fa fa-bars" aria-hidden="true"></i></span>
                         </div>
                         <select class="form-select" aria-label="Select plan"  name="plan">
-                            <option selected>Seleccione un plan</option>
+                            <option selected value="null">Seleccione un plan</option>
                             @foreach($planes as $plan)
                             <option value="{{$plan->id}}">{{$plan->nombre}}</option>
                             @endforeach
@@ -84,7 +84,7 @@
                     <div class="col-sm-12 col-md-4">
 
                     <div class="form-group">
-                            <label>* Proveedor:</label>
+                            <label>Proveedor:</label>
 
                             <div class="input-group">
                                 <div class="input-group-prepend">
@@ -173,7 +173,7 @@
 
                         <div class="col-sm-12 col-md-6">
                         <div class="form-group">
-                            <label>* Fecha alta:</label>
+                            <label>Fecha alta:</label>
                             <div class="input-group">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fa fa-calendar" aria-hidden="true"></i></span>
@@ -191,7 +191,7 @@
 
                         <div class="col-sm-12 col-md-6">
                         <div class="form-group">
-                            <label>* Fecha expiración:</label>
+                            <label>Fecha expiración:</label>
                             <div class="input-group">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fa fa-calendar" aria-hidden="true"></i></span>

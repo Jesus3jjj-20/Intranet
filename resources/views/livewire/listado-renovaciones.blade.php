@@ -49,19 +49,21 @@
                     </thead>
                     <tbody>
 
+        
                     @foreach($renovaciones as $renovacion)
-                        <tr>
-                            <td>{{$renovacion->servicio->servicio}}</td>
-                            <td>{{$renovacion->servicio->tipo->nombre}}</td>
-                            <td>{{$renovacion->servicio->distribuidor->nombre}}</td>
-                            <td>{{$renovacion->servicio->proveedor}}</td>
-                            <td>{{\Carbon\Carbon::parse(strtotime($renovacion->fecha_renovacion))->formatLocalized('%d/%m/%Y')}}</td>
+
+                    <tr>
+                        <td>{{$renovacion->servicio->servicio}}</td>
+                        <td>{{$renovacion->servicio->tipo->nombre}}</td>
+                        <td>{{isset($renovacion->servicio->distribuidor->nombre) ? $renovacion->servicio->distribuidor->nombre : '' }}</td>
+                        <td>{{isset($renovacion->servicio->proveedor->nombre) ? $renovacion->servicio->proveedor->nombre : '' }}</td>
+                        <td>{{\Carbon\Carbon::parse(strtotime($renovacion->fecha_renovacion))->formatLocalized('%d/%m/%Y')}}</td>
                             <td>{{$renovacion->nPresupuesto}}</td>
-                            @if($renovacion->estadoRenovacion->estado == "pendiente")
+                            @if($renovacion->estadoRenovacion->estado == "Pendiente")
                             <td class="pendiente">{{$renovacion->estadoRenovacion->estado}}</td>
-                            @elseif($renovacion->estadoRenovacion->estado == "enviado")
+                            @elseif($renovacion->estadoRenovacion->estado == "Enviado")
                             <td class="enviado">{{$renovacion->estadoRenovacion->estado}}</td>
-                            @elseif($renovacion->estadoRenovacion->estado == "enviado2")
+                            @elseif($renovacion->estadoRenovacion->estado == "Enviado2")
                             <td class="enviado2">{{$renovacion->estadoRenovacion->estado}}</td>
                             @else
                             <td class="aceptado">{{$renovacion->estadoRenovacion->estado}}</td>
@@ -71,7 +73,8 @@
                             @if($user->rol->admin != 1)
                                 <td><a href="{{route('editarRenovacion',['idRenovacion'=>$renovacion->id])}}"><i class="fas fa-edit colorIcono"></i></a></td>
                             @endif
-                        </tr>
+                    </tr>
+                      
                     @endforeach
 
                     </tbody>

@@ -32,18 +32,37 @@ class TiposSeeder extends Seeder
 
         DB::table('tipos')->insert([
             'id' => "4",
-            'nombre' => "software",
+            'nombre' => "software eurowin",
         ]);
 
         DB::table('tipos')->insert([
             'id' => "5",
-            'nombre' => "certificado ssl",
+            'nombre' => "software SB",
         ]);
 
         DB::table('tipos')->insert([
             'id' => "6",
+            'nombre' => "software TPV",
+        ]);
+
+        DB::table('tipos')->insert([
+            'id' => "7",
+            'nombre' => "certificado ssl",
+        ]);
+
+        DB::table('tipos')->insert([
+            'id' => "8",
+            'nombre' => "mantenimiento web",
+        ]);
+
+        DB::table('tipos')->insert([
+            'id' => "9",
             'nombre' => "otros",
         ]);
+
+
+
+
 
     }
 }

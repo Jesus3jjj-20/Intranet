@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Servicio;
 use App\Models\Cliente;
-use App\Models\Distribuidore;
+use App\Models\Distribuidor;
 use App\Models\Proveedor;
 use App\Models\Evento;
 use App\Models\Tipo;
@@ -23,7 +23,7 @@ class InicioController extends Controller
 
         $numeroServicios = Servicio::all()->count();
         $numeroClientes = Cliente::all()->count();
-        $numeroDistribuidores =Distribuidore::all()->count();
+        $numeroDistribuidores =Distribuidor::all()->count();
         $numeroProveedores = Proveedor::all()->count();
         $hoy = \Carbon\Carbon::now()->format('Y-m-d');
 
@@ -39,7 +39,7 @@ class InicioController extends Controller
         $serviciosPorMeses =  Servicio::selectRaw('month(fecha_alta) mes, count(*) servicios')
                             ->groupBy('mes')
                             ->orderBy('mes', 'asc')
-                            ->whereYear('fecha_alta',\Carbon\Carbon::now('Y'))
+                            ->whereYear('fecha_expiracion',\Carbon\Carbon::now('Y'))
                             ->get();
 
         $serviciosPorTipos =  Servicio::selectRaw('tipo_id tipo, count(*) servicios')
@@ -48,10 +48,9 @@ class InicioController extends Controller
                             ->whereYear('fecha_alta',\Carbon\Carbon::now('Y'))
                             ->get();
 
-
         $ultimosServiciosRegistrados = Servicio::orderBy('id','desc')->take(7)->get();
         $ultimosClientesRegistrados = Cliente::orderBy('id','desc')->take(7)->get();
-        $ultimosDistribuidoresRegistrados = Distribuidore::orderBy('id','desc')->take(7)->get();
+        $ultimosDistribuidoresRegistrados = Distribuidor::orderBy('id','desc')->take(7)->get();
         $ultimosProveedoresRegistrados = Proveedor::orderBy('id','desc')->take(7)->get();
 
         $user = Auth::user();

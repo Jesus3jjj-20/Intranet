@@ -27,9 +27,18 @@ class Pantalla extends Component
         $diaNumero = \Carbon\Carbon::now()->format('d');
         $mes = \Carbon\Carbon::now()->format('n');
 
-        $serviciosDominiosHostingsSSL = Servicio::where('tipo_id',1)->orWhere('tipo_id',2)->orWhere('tipo_id',5)->where('fecha_expiracion', '>=', $hoy)->orderBy('fecha_expiracion','asc')->take(11)->get();
+        $serviciosDominiosHostingsSSL = Servicio::where('fecha_expiracion', '>=', $hoy)
+                                                  ->where(function($query){
+
+                                                    $query->where('tipo_id',1)
+                                                           ->orWhere('tipo_id',2)
+                                                           ->orWhere('tipo_id',7);
+                                                  })
+        ->orderBy('fecha_expiracion','asc')->take(11)->get();
+
+        
         $serviciosMicrosft = Servicio::where('tipo_id',3)->where('fecha_expiracion', '>=', $hoy)->orderBy('fecha_expiracion','asc')->take(11)->get();
-        $otrosServicios = Servicio::where('tipo_id', "!=" ,1)->where('tipo_id', "!=" , 2)->where('tipo_id', "!=" ,3)->where('tipo_id', "!=" ,5)->where('fecha_expiracion', '>=', $hoy)->orderBy('fecha_expiracion','asc')->take(11)->get();
+        $otrosServicios = Servicio::where('tipo_id', "!=" ,1)->where('tipo_id', "!=" , 2)->where('tipo_id', "!=" ,3)->where('tipo_id', "!=" ,7)->where('fecha_expiracion', '>=', $hoy)->orderBy('fecha_expiracion','asc')->take(11)->get();
         $recordatorios = Evento::where('fecha_inicio', '<=', $hoy)
                         ->where('fecha_fin', '>=', $hoy)
                         ->get();

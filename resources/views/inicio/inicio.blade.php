@@ -1,6 +1,6 @@
 @extends('layouts.plantilla')
 
-@section('titulo', 'Controlsys S.L - BBDD')
+@section('titulo', 'Controlsys S.L - INTRANET')
 @section('nombreUsuario', $user->name)
 
 
@@ -414,7 +414,7 @@
     const data = {
         labels: labels,
         datasets: [{
-            label:"Cantidad de servicios",
+            label:"Expiración de servicios",
             data: 
             <?php
 
@@ -452,17 +452,19 @@
 
       <?php 
 
-      echo "'" . isset($tipo[0]) ? $tipos[0]->nombre : '' . "'";
+
+      echo isset($tipos[0]) ?  "'" . $tipos[0]->nombre . "'" : '' ;
 
         for($i=1; $i<count($tipos); $i++){
-          echo "," . "'". isset($tipo[$i]) ? $tipos[0]->nombre : '' . "'";
+          echo ",";
+          echo isset($tipos[$i]) ?  "'" . $tipos[$i]->nombre ."'" : '' ;
         }
 
       ?>
 
     ];
 
-    /*Gráfico servicios barras*/ 
+    /*Gráfico servicios círculo*/ 
      
     const circulo = document.querySelector("#circulo");
      
@@ -472,10 +474,11 @@
               data: [
 
       <?php
-          echo isset($serviciosPorTipos[0]) ? $serviciosPorTipos[0]->nombre : '';
+          echo isset($serviciosPorTipos[0]) ?  $serviciosPorTipos[0]->servicios : '';
 
           for($i=1; $i< count($serviciosPorTipos); $i++){
-              echo "," . isset($serviciosPorTipos[$i]) ? $serviciosPorTipos[0]->nombre : '';
+            echo ",";
+            echo  isset($serviciosPorTipos[$i]) ?  $serviciosPorTipos[$i]->servicios : '';
           }
 
       ?>

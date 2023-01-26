@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateDistribuidoresTable extends Migration
+class CreateDistribuidorsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,10 @@ class CreateDistribuidoresTable extends Migration
      */
     public function up()
     {
-        Schema::create('distribuidores', function (Blueprint $table) {
-            $table->id();
-            $table->string("nombre");
+        Schema::create('distribuidors', function (Blueprint $table) {
+            $table->bigInteger("id")->primary();
+            $table->string("nombre")->nullable();;
+            $table->integer("FACT_PROV")->nullable();;
             $table->timestamps();
         });
     }
@@ -27,6 +28,6 @@ class CreateDistribuidoresTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('distribuidores');
+        Schema::dropIfExists('distribuidors');
     }
 }

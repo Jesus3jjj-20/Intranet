@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Distribuidore;
+use App\Models\Distribuidor;
 use Illuminate\Support\Facades\Auth;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\DistribuidorExportacion;
@@ -34,7 +34,7 @@ class DistribuidoresController extends Controller
     }
 
     public function crearDistribuidorDatos(Request $request){
-        $distribuidor = new Distribuidore;
+        $distribuidor = new Distribuidor;
         $distribuidor->nombre = $request->nombre;
         $distribuidor->save();
 
@@ -44,7 +44,7 @@ class DistribuidoresController extends Controller
    
     public function editarDistribuidorForm($idDistribuidor){
         $user = Auth::user();
-        $distribuidor = Distribuidore::find($idDistribuidor);
+        $distribuidor = Distribuidor::find($idDistribuidor);
 
         return view("distribuidores/editarDistribuidores",["user"=>$user, "distribuidor"=>$distribuidor]);
 
@@ -52,7 +52,7 @@ class DistribuidoresController extends Controller
 
     public function editarDatosDistribuidor(Request $request){
 
-        Distribuidore::where('id', $request->idOculto)
+        Distribuidor::where('id', $request->idOculto)
         ->update(['nombre' => $request->nombre]);
 
         return redirect()->back();
@@ -60,7 +60,7 @@ class DistribuidoresController extends Controller
     }
 
     public function eliminarDistribuidor($idDistribuidor){
-        Distribuidore::where("id",$idDistribuidor)->delete();
+        Distribuidor::where("id",$idDistribuidor)->delete();
         return redirect()->back();
     }
 

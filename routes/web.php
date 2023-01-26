@@ -10,6 +10,9 @@ use App\Http\Controllers\EventosController;
 use App\Http\Controllers\ServiciosController;
 use App\Http\Controllers\PlanesController;
 use App\Http\Controllers\RenovacionesController;
+use App\Http\Controllers\ImportacionesController;
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -128,6 +131,15 @@ Route::controller(RenovacionesController::class)->group(function () {
     Route::post('/actualizarRenovacion', 'actualizarRenovacion')->middleware(['auth'])->name("actualizarRenovacion");
 });
 
+
+Route::controller(ImportacionesController::class)->group(function () {
+    Route::get('/importProveedores', 'importProveedores')->name("importarProveedores");
+    Route::get('/importDistribuidores', 'importDistribuidores')->name("importarDistribuidores");
+    Route::get('/importClientes', 'importClientes')->name("importarClientes");
+    Route::get('/importDominios', 'importServiciosDominios')->name("importarDominios");
+    Route::get('/importHostings', 'importServiciosHostings')->name("importarHostings");
+    Route::get('/importMantenimientos', 'importServiciosMantenimientos')->name("importarMantenimientos");
+});
 
 
 

@@ -3,7 +3,7 @@
 namespace App\Http\Livewire;
 
 use Livewire\Component;
-use App\Models\Distribuidore;
+use App\Models\Distribuidor;
 use Illuminate\Support\Facades\Auth;
 use Livewire\WithPagination;
 
@@ -14,7 +14,7 @@ class ListadoDistribuidores extends Component
     protected $paginationTheme = 'bootstrap';
 
     public $buscador;
-    public $ordenarCampo = "nombre";
+    public $ordenarCampo = "id";
     public $ordenarDireccion = "asc";
     public $icono = "fas fa-arrow-circle-up";
     public $numPaginas = 5;
@@ -23,7 +23,7 @@ class ListadoDistribuidores extends Component
     {
 
         $user = Auth::user();
-        $distribuidores = Distribuidore::select('id','nombre')->where("nombre", 'like', '%' . $this->buscador . '%')
+        $distribuidores = Distribuidor::select('id','nombre')->where("nombre", 'like', '%' . $this->buscador . '%')
         ->orWhere("id", 'like', '%' . $this->buscador . '%')
         ->orderBy($this->ordenarCampo, $this->ordenarDireccion)
         ->paginate($this->numPaginas);

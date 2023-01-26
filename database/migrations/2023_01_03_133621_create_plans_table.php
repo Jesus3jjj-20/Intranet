@@ -16,6 +16,7 @@ class CreatePlansTable extends Migration
         Schema::create('plans', function (Blueprint $table) {
             $table->id();
             $table->string("nombre");
+            $table->bigInteger("tipo_id")->nullable();
             $table->timestamps();
         });
     }

@@ -37,7 +37,7 @@
 
                     <div class="row mt-3">
 
-                    <div class="col-sm-12 col-md-4">
+                    <div class="col-sm-12 col-md-6">
 
                     <div class="form-group">
                     <label>* Plan:</label>
@@ -47,6 +47,7 @@
                         <span class="input-group-text"><i class="fa fa-bars" aria-hidden="true"></i></span>
                         </div>
                         <select class="form-select" aria-label="Select plan"  name="plan">
+                        <option value="">Seleccione una opción</option>
                             @foreach($planes as $plan)
                             <option value="{{$plan->id}}" {{($plan->id == $servicio->plan_id) ? 'selected' : ''}}>{{$plan->nombre}}</option>
                             @endforeach
@@ -58,7 +59,7 @@
 
                     </div>
 
-                    <div class="col-sm-12 col-md-4">
+                    <div class="col-sm-12 col-md-6">
 
                     <div class="form-group">
                     <label>* Tipo:</label>
@@ -68,6 +69,7 @@
                         <span class="input-group-text"><i class="fa fa-bars" aria-hidden="true"></i></span>
                         </div>
                         <select class="form-select" aria-label="Select tipo" name="tipo">
+                        <option value="">Seleccione una opción</option>
                             @foreach($tipos as $tipo)
                                 <option value="{{$tipo->id}}" {{($tipo->id == $servicio->tipo_id) ? 'selected' : ''}} >{{$tipo->nombre}}</option>
                             @endforeach
@@ -79,30 +81,33 @@
 
                     </div>
 
-                    <div class="col-sm-12 col-md-4">
-
-                    <div class="form-group">
-                            <label>* Proveedor:</label>
-
-                            <div class="input-group">
-                                <div class="input-group-prepend">
-                                <span class="input-group-text"><i class="fa fa-bars" aria-hidden="true"></i></span>
-                                </div>
-                                <select class="form-select" aria-label="Select proveedor"  name="proveedor">
-                                    @foreach($proveedores as $proveedor)
-                                        <option value="{{$proveedor->id}}" {{($proveedor->id == $servicio->proveedore_id) ? 'selected' : ''}}>{{$proveedor->nombre}}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                            <!-- /.input group -->
-                            </div>
-                            <!-- /.form group -->
-
-
-                    </div>
+                   
 
                     </div>
                     <!--row-->
+
+                    <div class="row">
+
+                        <div class="form-group">
+                                <label>* Proveedor:</label>
+
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fa fa-bars" aria-hidden="true"></i></span>
+                                    </div>
+                                    
+                                    <select class="form-select" aria-label="Select proveedor"  name="proveedor">
+                                    <option value="">Seleccione una opción</option>
+                                        @foreach($proveedores as $proveedor)
+                                            <option value="{{$proveedor->id}}" {{($proveedor->id == $servicio->proveedor_id) ? 'selected' : ''}}>{{$proveedor->nombre}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <!-- /.input group -->
+                                </div>
+                                <!-- /.form group -->
+                        
+                    </div>
 
                     <div class="row mt-3">
                         <div class="col-sm-12 col-md-4">
@@ -115,8 +120,9 @@
                             <span class="input-group-text"><i class="fa fa-bars" aria-hidden="true"></i></span>
                             </div>
                             <select class="form-select" aria-label="Select distribuidor"  name="distribuidor">
+                                <option value="">Seleccione una opción</option>
                                 @foreach($distribuidores as $distribuidor)
-                                    <option value="{{$distribuidor->id}}" {{($distribuidor->id == $servicio->distribuidore_id) ? 'selected' : ''}}>{{$distribuidor->nombre}}</option>
+                                    <option value="{{$distribuidor->id}}" {{($distribuidor->id == $servicio->distribuidor_id) ? 'selected' : ''}}>{{$distribuidor->nombre}}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -156,6 +162,7 @@
                                 <span class="input-group-text"><i class="fa fa-bars" aria-hidden="true"></i></span>
                                 </div>
                                 <select class="form-select" aria-label="Select cliente"  name="cliente">
+                                    <option value="">Seleccione una opción</option>
                                     @foreach($clientes as $cliente)
                                         <option value="{{$cliente->id}}" {{($cliente->id == $servicio->cliente_id) ? 'selected' : ''}}>{{$cliente->nombre}}</option>
                                     @endforeach
@@ -302,7 +309,7 @@
                                         <span class="input-group-text"><i class="fa fa-bars" aria-hidden="true"></i></span>
                                     </div>
                                     <select class="form-select" aria-label="Select periodificacion proveedor" name="periodificacionProveedor">
-                                    <option selected>Seleccione periodificación</option>
+                                        <option selected>Seleccione periodificación</option>
                                         <option value="mensual" {{($servicio->periodificacion_proveedor == "mensual") ? "selected" : ""}}>Mensual</option>
                                         <option value="semestral" {{($servicio->periodificacion_proveedor == "semestral") ? "selected" : ""}}>Semestral</option>
                                         <option value="trimestral" {{($servicio->periodificacion_proveedor == "trimestral") ? "selected" : ""}}>Trimestral</option>

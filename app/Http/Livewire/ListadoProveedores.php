@@ -14,7 +14,7 @@ class ListadoProveedores extends Component
     protected $paginationTheme = 'bootstrap';
 
     public $buscador;
-    public $ordenarCampo = "nombre";
+    public $ordenarCampo = "id";
     public $ordenarDireccion = "asc";
     public $icono = "fas fa-arrow-circle-up";
     public $numPaginas = 5;
